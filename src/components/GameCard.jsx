@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Star, Sparkles, Gamepad2 } from 'lucide-react';
+import { Play, Star, Sparkles, Gamepad2, Shield } from 'lucide-react';
 
 export const GameCard = ({
   game,
@@ -31,7 +31,17 @@ export const GameCard = ({
         <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
 
         {/* Top Badges */}
-        <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-end z-10">
+        <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between z-10">
+          {/* Linewize Safe Badge */}
+          {game.isLinewizeSafe ? (
+            <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 text-[10px] font-bold backdrop-blur-md">
+              <Shield className="w-3 h-3 text-emerald-400" />
+              <span>LINEWIZE SAFE</span>
+            </div>
+          ) : (
+            <div />
+          )}
+
           {/* Favorite Star Button */}
           <button
             id={`fav-btn-${game.id}`}

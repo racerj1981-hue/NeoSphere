@@ -50,5 +50,44 @@
     "releaseYear": 2024,
     "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
     "allow": "autoplay; fullscreen; pointer-lock; gamepad"
+  },
+  {
+    "id": "cyber-slope",
+    "title": "Cyber Slope (Linewize Safe)",
+    "description": "100% Linewize & School Filter Safe. A fast-paced 3D neon slope runner with procedural tracks, ramp jumps, speed boosters, and built-in Web Audio synthesis. Runs completely offline with 0 external network requests!",
+    "category": ["Action", "Arcade", "Strategy", "Casual"],
+    "iframeUrl": "./games/cyber-slope/index.html",
+    "thumbnail": "./assets/games/cyber-slope.jpg",
+    "controls": [
+      "A / D or Left / Right Arrows - Steer Ball",
+      "Spacebar - Jump / Start",
+      "M - Toggle Mute"
+    ],
+    "author": "NeoSphere / Jace",
+    "rating": 5.0,
+    "playCount": 8940,
+    "releaseYear": 2026,
+    "featured": true,
+    "isLinewizeSafe": true,
+    "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
+    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
+  },
+  {
+    "id": "cyber-flap",
+    "title": "Cyber Flap (Linewize Safe)",
+    "description": "100% Linewize & School Firewall Safe. Pilot your cyber drone through laser columns with real-time synth audio and particle trails. Zero external dependencies!",
+    "category": ["Casual", "Arcade", "Retro"],
+    "iframeUrl": "./games/cyber-flap/index.html",
+    "thumbnail": "./assets/games/cyber-flap.jpg",
+    "controls": [
+      "Spacebar / Up Arrow / Left Click - Flap Drone"
+    ],
+    "author": "NeoSphere / Jace",
+    "rating": 4.9,
+    "playCount": 6420,
+    "releaseYear": 2026,
+    "isLinewizeSafe": true,
+    "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
+    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
   }
 ]

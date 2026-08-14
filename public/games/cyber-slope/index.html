@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Cyber Slope 3D - Linewize Unblocked</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #050711;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+      color: #fff;
+    }
+    #canvas-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1;
+    }
+    canvas {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+    /* HUD Layer */
+    #hud {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 10;
+      pointer-events: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 16px;
+    }
+    .hud-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .stat-badge {
+      background: rgba(10, 15, 30, 0.85);
+      border: 1px solid rgba(0, 255, 200, 0.3);
+      padding: 8px 16px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    }
+    .stat-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #00ffcc;
+      font-weight: bold;
+    }
+    .stat-value {
+      font-size: 22px;
+      font-weight: 900;
+      font-family: 'Courier New', Courier, monospace;
+      color: #ffffff;
+      text-shadow: 0 0 10px rgba(0, 255, 200, 0.5);
+    }
+    .linewize-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 11px;
+      color: #34d399;
+      font-weight: 600;
+    }
+    .pulse-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #34d399;
+      box-shadow: 0 0 8px #34d399;
+      animation: pulse 1.5s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.8); }
+    }
+    /* Controls Hint Overlay */
+    .hud-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      padding-bottom: 8px;
+    }
+    .controls-hint {
+      background: rgba(10, 15, 30, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 11px;
+      color: #94a3b8;
+    }
+    .key-badge {
+      display: inline-block;
+      padding: 2px 6px;
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 4px;
+      font-weight: bold;
+      color: #fff;
+      margin: 0 2px;
+    }
+    /* Menu Screens */
+    .screen-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 7, 17, 0.88);
+      backdrop-filter: blur(12px);
+      z-index: 20;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      text-align: center;
+      pointer-events: auto;
+    }
+    .title-glitch {
+      font-size: 48px;
+      font-weight: 900;
+      letter-spacing: 3px;
+      background: linear-gradient(135deg, #00f0ff, #7000ff, #ff007b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      filter: drop-shadow(0 0 20px rgba(0, 240, 255, 0.4));
+    }
+    .subtitle {
+      font-size: 14px;
+      color: #94a3b8;
+      margin-bottom: 24px;
+      max-width: 400px;
+      line-height: 1.5;
+    }
+    .btn-play {
+      background: linear-gradient(135deg, #00f0ff, #7000ff);
+      color: #fff;
+      border: none;
+      padding: 14px 44px;
+      font-size: 18px;
+      font-weight: 800;
+      border-radius: 14px;
+      cursor: pointer;
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.5), inset 0 0 10px rgba(255, 255, 255, 0.3);
+      transition: all 0.2s ease;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+    .btn-play:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 45px rgba(0, 240, 255, 0.7);
+    }
+    .btn-play:active {
+      transform: scale(0.97);
+    }
+    .skin-selector {
+      display: flex;
+      gap: 12px;
+      margin: 20px 0;
+      padding: 8px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .skin-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+    .skin-btn:hover {
+      transform: scale(1.15);
+    }
+    .skin-btn.active {
+      border-color: #fff;
+      box-shadow: 0 0 15px #fff;
+      transform: scale(1.1);
+    }
+    /* Touch controls on mobile */
+    .touch-zones {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 5;
+      display: flex;
+      pointer-events: auto;
+    }
+    .touch-left, .touch-right {
+      flex: 1;
+      height: 100%;
+    }
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="canvas-container">
+    <canvas id="gameCanvas"></canvas>
+  </div>
+
+  <!-- Touch Steering Overlay -->
+  <div class="touch-zones" id="touchOverlay">
+    <div class="touch-left" id="touchLeft"></div>
+    <div class="touch-right" id="touchRight"></div>
+  </div>
+
+  <!-- Live In-Game HUD -->
+  <div id="hud">
+    <div class="hud-top">
+      <div class="stat-badge">
+        <div class="stat-label">Distance</div>
+        <div class="stat-value" id="hudDistance">0 m</div>
+      </div>
+      <div class="linewize-badge">
+        <div class="pulse-dot"></div>
+        <span>Linewize Safe • 100% Offline Canvas</span>
+      </div>
+      <div class="stat-badge">
+        <div class="stat-label">High Score</div>
+        <div class="stat-value" id="hudHighScore">0 m</div>
+      </div>
+    </div>
+
+    <div class="hud-bottom">
+      <div class="controls-hint">
+        Steer: <span class="key-badge">A</span> <span class="key-badge">D</span> or <span class="key-badge">←</span> <span class="key-badge">→</span> • Jump: <span class="key-badge">Space</span> • Mute: <span class="key-badge">M</span>
+      </div>
+      <div class="stat-badge" style="padding: 6px 12px;">
+        <div class="stat-label">Speed</div>
+        <div class="stat-value" style="font-size: 16px; color: #f59e0b;" id="hudSpeed">100 MPH</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Start / Main Menu Screen -->
+  <div class="screen-overlay" id="startScreen">
+    <h1 class="title-glitch">CYBER SLOPE</h1>
+    <div class="linewize-badge" style="margin-bottom: 16px;">
+      <div class="pulse-dot"></div>
+      <span>100% Linewize & School Firewall Bypass • Local Engine</span>
+    </div>
+    <p class="subtitle">
+      Control a high-velocity neon sphere down procedurally generated 3D tracks. Dodge red obstacle blocks, launch off booster ramps, and survive the endless drop!
+    </p>
+
+    <div style="font-size: 12px; color: #94a3b8; margin-bottom: 6px;">SELECT NEON SPHERE SKIN</div>
+    <div class="skin-selector">
+      <button class="skin-btn active" style="background: radial-gradient(circle at 35% 35%, #00ffff, #0077aa);" onclick="selectSkin('cyan')"></button>
+      <button class="skin-btn" style="background: radial-gradient(circle at 35% 35%, #ff0077, #aa0044);" onclick="selectSkin('pink')"></button>
+      <button class="skin-btn" style="background: radial-gradient(circle at 35% 35%, #00ff66, #008833);" onclick="selectSkin('green')"></button>
+      <button class="skin-btn" style="background: radial-gradient(circle at 35% 35%, #ffbb00, #bb5500);" onclick="selectSkin('gold')"></button>
+      <button class="skin-btn" style="background: radial-gradient(circle at 35% 35%, #a855f7, #6b21a8);" onclick="selectSkin('purple')"></button>
+    </div>
+
+    <button class="btn-play" id="startBtn" onclick="startGame()">PLAY GAME</button>
+  </div>
+
+  <!-- Game Over Screen -->
+  <div class="screen-overlay hidden" id="gameOverScreen">
+    <h1 class="title-glitch" style="background: linear-gradient(135deg, #ef4444, #f97316); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">CRASHED!</h1>
+    
+    <div style="margin: 18px 0;" class="stat-badge">
+      <div class="stat-label">Final Distance</div>
+      <div class="stat-value" id="finalScore" style="font-size: 32px; color: #38bdf8;">0 m</div>
+    </div>
+    
+    <div style="margin-bottom: 24px; font-size: 13px; color: #a1a1aa;" id="highScoreNotice">
+      Best: 0 m
+    </div>
+
+    <button class="btn-play" onclick="restartGame()">PLAY AGAIN (SPACE)</button>
+  </div>
+
+  <script>
+    // ==========================================
+    // REALTIME WEB AUDIO API SYNTHESIZER (0 NETWORK ASSETS)
+    // ==========================================
+    let audioCtx = null;
+    let isMuted = false;
+
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+    }
+
+    function playSound(type) {
+      if (isMuted || !audioCtx) return;
+      try {
+        const now = audioCtx.currentTime;
+        if (type === 'jump') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(160, now);
+          osc.frequency.exponentialRampToValueAtTime(480, now + 0.18);
+          gain.gain.setValueAtTime(0.25, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.18);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.18);
+        } else if (type === 'boost') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(300, now);
+          osc.frequency.exponentialRampToValueAtTime(900, now + 0.3);
+          gain.gain.setValueAtTime(0.3, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.3);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.3);
+        } else if (type === 'gem') {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(587, now);
+          osc.frequency.setValueAtTime(880, now + 0.08);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.2);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 0.2);
+        } else if (type === 'crash') {
+          // White noise buffer for crash explosion
+          const bufferSize = audioCtx.sampleRate * 0.4;
+          const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+          const data = buffer.getChannelData(0);
+          for (let i = 0; i < bufferSize; i++) {
+            data[i] = Math.random() * 2 - 1;
+          }
+          const noise = audioCtx.createBufferSource();
+          noise.buffer = buffer;
+          const filter = audioCtx.createBiquadFilter();
+          filter.type = 'lowpass';
+          filter.frequency.setValueAtTime(1000, now);
+          filter.frequency.exponentialRampToValueAtTime(50, now + 0.4);
+          const gain = audioCtx.createGain();
+          gain.gain.setValueAtTime(0.4, now);
+          gain.gain.exponentialRampToValueAtTime(0.01, now + 0.4);
+          noise.connect(filter);
+          filter.connect(gain);
+          gain.connect(audioCtx.destination);
+          noise.start(now);
+          noise.stop(now + 0.4);
+        }
+      } catch (e) {
+        console.warn('Audio play error:', e);
+      }
+    }
+
+    // ==========================================
+    // 3D PSEUDO CANVAS GAME ENGINE
+    // ==========================================
+    const canvas = document.getElementById('gameCanvas');
+    const ctx = canvas.getContext('2d');
+
+    let width, height;
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    // Game state
+    let state = 'START'; // START, PLAYING, GAMEOVER
+    let score = 0;
+    let highScore = parseInt(localStorage.getItem('cyber_slope_highscore') || '0', 10);
+    document.getElementById('hudHighScore').innerText = highScore + ' m';
+
+    // Player Ball object
+    const player = {
+      x: 0,
+      y: 0,
+      z: 0,
+      radius: 0.6,
+      vx: 0,
+      vy: 0,
+      speed: 38, // Forward speed in units/sec
+      isGrounded: true,
+      rollAngle: 0,
+      skin: 'cyan'
+    };
+
+    const skinColors = {
+      cyan: { main: '#00ffff', shadow: '#0077aa', glow: 'rgba(0,255,255,0.6)' },
+      pink: { main: '#ff0077', shadow: '#aa0044', glow: 'rgba(255,0,119,0.6)' },
+      green: { main: '#00ff66', shadow: '#008833', glow: 'rgba(0,255,102,0.6)' },
+      gold: { main: '#ffbb00', shadow: '#bb5500', glow: 'rgba(255,187,0,0.6)' },
+      purple: { main: '#a855f7', shadow: '#6b21a8', glow: 'rgba(168,85,247,0.6)' }
+    };
+
+    function selectSkin(color) {
+      player.skin = color;
+      document.querySelectorAll('.skin-btn').forEach(btn => btn.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    // Input handlers
+    const keys = { left: false, right: false, jump: false };
+    window.addEventListener('keydown', (e) => {
+      initAudio();
+      if (e.code === 'ArrowLeft' || e.code === 'KeyA') keys.left = true;
+      if (e.code === 'ArrowRight' || e.code === 'KeyD') keys.right = true;
+      if (e.code === 'Space') {
+        if (state === 'PLAYING') {
+          if (player.isGrounded) {
+            player.vy = 12;
+            player.isGrounded = false;
+            playSound('jump');
+          }
+        } else if (state === 'GAMEOVER') {
+          restartGame();
+        } else if (state === 'START') {
+          startGame();
+        }
+      }
+      if (e.code === 'KeyM') {
+        isMuted = !isMuted;
+      }
+    });
+
+    window.addEventListener('keyup', (e) => {
+      if (e.code === 'ArrowLeft' || e.code === 'KeyA') keys.left = false;
+      if (e.code === 'ArrowRight' || e.code === 'KeyD') keys.right = false;
+    });
+
+    // Touch support for tablets/phones
+    const touchLeft = document.getElementById('touchLeft');
+    const touchRight = document.getElementById('touchRight');
+    touchLeft.addEventListener('touchstart', (e) => { e.preventDefault(); keys.left = true; initAudio(); });
+    touchLeft.addEventListener('touchend', (e) => { e.preventDefault(); keys.left = false; });
+    touchRight.addEventListener('touchstart', (e) => { e.preventDefault(); keys.right = true; initAudio(); });
+    touchRight.addEventListener('touchend', (e) => { e.preventDefault(); keys.right = false; });
+
+    // Track segments
+    const SEGMENT_LENGTH = 12;
+    const TRACK_WIDTH = 10;
+    let segments = [];
+    let particles = [];
+
+    function generateTrack() {
+      segments = [];
+      let currentZ = 0;
+      let currentX = 0;
+      let currentY = 0;
+
+      for (let i = 0; i < 40; i++) {
+        // Safe starting runway
+        let type = 'flat';
+        let obstacle = null;
+        let booster = null;
+
+        if (i > 3) {
+          const rand = Math.random();
+          if (rand < 0.25) {
+            type = 'ramp';
+          } else if (rand < 0.6) {
+            // Add red obstacle blocks
+            obstacle = {
+              x: (Math.random() - 0.5) * (TRACK_WIDTH - 3),
+              width: 1.8 + Math.random() * 1.5,
+              height: 1.6
+            };
+          } else if (rand < 0.75) {
+            // Speed booster pad
+            booster = {
+              x: (Math.random() - 0.5) * (TRACK_WIDTH - 4),
+              width: 2.2
+            };
+          }
+        }
+
+        segments.push({
+          z: currentZ,
+          x: currentX,
+          y: currentY,
+          length: SEGMENT_LENGTH,
+          width: TRACK_WIDTH,
+          type: type,
+          obstacle: obstacle,
+          booster: booster,
+          colorHue: (i * 15) % 360
+        });
+
+        currentZ += SEGMENT_LENGTH;
+        currentY -= (type === 'ramp' ? -2 : 0.8);
+        currentX += (Math.random() - 0.5) * 2;
+      }
+    }
+
+    function createExplosion(x, y, z) {
+      for (let i = 0; i < 40; i++) {
+        particles.push({
+          x: x,
+          y: y,
+          z: z,
+          vx: (Math.random() - 0.5) * 16,
+          vy: Math.random() * 14,
+          vz: (Math.random() - 0.5) * 16,
+          size: Math.random() * 6 + 3,
+          color: skinColors[player.skin].main,
+          life: 1.0
+        });
+      }
+    }
+
+    // Perspective Projection helper
+    const FOV = 450;
+    const CAMERA_OFFSET_Y = 3.5;
+    const CAMERA_OFFSET_Z = -7;
+
+    function project(x, y, z) {
+      const relX = x - player.x;
+      const relY = y - (player.y + CAMERA_OFFSET_Y);
+      const relZ = z - (player.z + CAMERA_OFFSET_Z);
+
+      if (relZ <= 0.1) return null;
+
+      const scale = FOV / relZ;
+      return {
+        x: width / 2 + relX * scale,
+        y: height / 2 - relY * scale,
+        scale: scale,
+        z: relZ
+      };
+    }
+
+    let lastTime = performance.now();
+
+    function startGame() {
+      initAudio();
+      state = 'PLAYING';
+      score = 0;
+      player.x = 0;
+      player.y = 1;
+      player.z = 0;
+      player.vx = 0;
+      player.vy = 0;
+      player.speed = 38;
+      player.isGrounded = true;
+      particles = [];
+      generateTrack();
+
+      document.getElementById('startScreen').classList.add('hidden');
+      document.getElementById('gameOverScreen').classList.add('hidden');
+    }
+
+    function gameOver() {
+      state = 'GAMEOVER';
+      playSound('crash');
+      createExplosion(player.x, player.y, player.z);
+
+      const finalDist = Math.floor(player.z);
+      if (finalDist > highScore) {
+        highScore = finalDist;
+        localStorage.setItem('cyber_slope_highscore', highScore.toString());
+        document.getElementById('hudHighScore').innerText = highScore + ' m';
+        document.getElementById('highScoreNotice').innerHTML = `<span style="color:#00ffcc;font-weight:bold;">★ NEW HIGH SCORE! ★</span>`;
+      } else {
+        document.getElementById('highScoreNotice').innerText = `Best Score: ${highScore} m`;
+      }
+
+      document.getElementById('finalScore').innerText = finalDist + ' m';
+      document.getElementById('gameOverScreen').classList.remove('hidden');
+    }
+
+    function restartGame() {
+      startGame();
+    }
+
+    // Main Game Loop
+    function loop(currentTime) {
+      const dt = Math.min((currentTime - lastTime) / 1000, 0.1);
+      lastTime = currentTime;
+
+      // Update State
+      if (state === 'PLAYING') {
+        // Lateral Steering with smooth inertia
+        if (keys.left) player.vx = Math.max(player.vx - 45 * dt, -18);
+        else if (keys.right) player.vx = Math.min(player.vx + 45 * dt, 18);
+        else player.vx *= 0.88;
+
+        player.x += player.vx * dt;
+        player.z += player.speed * dt;
+        player.speed = Math.min(player.speed + 0.8 * dt, 90); // Gradual speed acceleration
+
+        // Gravity & Vertical Physics
+        player.vy -= 28 * dt;
+        player.y += player.vy * dt;
+
+        // Rolling animation
+        player.rollAngle += player.speed * dt * 0.15;
+
+        // Check track collision
+        let onAnyTrack = false;
+        for (let seg of segments) {
+          if (player.z >= seg.z && player.z <= seg.z + seg.length) {
+            const trackHalfWidth = seg.width / 2;
+            if (Math.abs(player.x - seg.x) <= trackHalfWidth) {
+              if (player.y <= seg.y + player.radius) {
+                player.y = seg.y + player.radius;
+                player.vy = 0;
+                player.isGrounded = true;
+                onAnyTrack = true;
+
+                // Obstacle collision
+                if (seg.obstacle) {
+                  if (Math.abs(player.x - (seg.x + seg.obstacle.x)) < (seg.obstacle.width / 2 + 0.3) &&
+                      player.y < seg.y + seg.obstacle.height) {
+                    gameOver();
+                    break;
+                  }
+                }
+
+                // Booster pad trigger
+                if (seg.booster) {
+                  if (Math.abs(player.x - (seg.x + seg.booster.x)) < (seg.booster.width / 2 + 0.4)) {
+                    player.speed = Math.min(player.speed + 20, 110);
+                    player.vy = 8; // gentle lift
+                    playSound('boost');
+                    seg.booster = null; // consume
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        // Falling off track death condition
+        if (!onAnyTrack && player.y < -15) {
+          gameOver();
+        }
+
+        // Extend track infinitely
+        const lastSeg = segments[segments.length - 1];
+        if (player.z > lastSeg.z - 300) {
+          const type = Math.random() < 0.25 ? 'ramp' : 'flat';
+          const obstacle = (Math.random() < 0.45) ? {
+            x: (Math.random() - 0.5) * (TRACK_WIDTH - 3.5),
+            width: 2.0,
+            height: 1.6
+          } : null;
+          const booster = (!obstacle && Math.random() < 0.3) ? {
+            x: (Math.random() - 0.5) * (TRACK_WIDTH - 4),
+            width: 2.4
+          } : null;
+
+          segments.push({
+            z: lastSeg.z + lastSeg.length,
+            x: lastSeg.x + (Math.random() - 0.5) * 3,
+            y: lastSeg.y - (type === 'ramp' ? -2.5 : 0.9),
+            length: SEGMENT_LENGTH,
+            width: TRACK_WIDTH,
+            type: type,
+            obstacle: obstacle,
+            booster: booster,
+            colorHue: (segments.length * 15) % 360
+          });
+        }
+
+        // Clean up old segments
+        if (segments.length > 60) {
+          segments.shift();
+        }
+
+        // Update HUD
+        const currentDistance = Math.floor(player.z);
+        document.getElementById('hudDistance').innerText = currentDistance + ' m';
+        document.getElementById('hudSpeed').innerText = Math.floor(player.speed * 2.6) + ' MPH';
+      }
+
+      // Update explosion particles
+      for (let p of particles) {
+        p.x += p.vx * dt;
+        p.y += p.vy * dt;
+        p.z += p.vz * dt;
+        p.vy -= 20 * dt;
+        p.life -= dt * 1.5;
+      }
+      particles = particles.filter(p => p.life > 0);
+
+      // ==========================================
+      // RENDER 3D SCENE
+      // ==========================================
+      // Background gradient
+      const bgGrad = ctx.createLinearGradient(0, 0, 0, height);
+      bgGrad.addColorStop(0, '#040612');
+      bgGrad.addColorStop(0.5, '#0c102b');
+      bgGrad.addColorStop(1, '#050711');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, width, height);
+
+      // Horizon glow line
+      const horizonY = height * 0.42;
+      ctx.strokeStyle = 'rgba(0, 240, 255, 0.2)';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(0, horizonY);
+      ctx.lineTo(width, horizonY);
+      ctx.stroke();
+
+      // Render Track Segments (Back to Front)
+      for (let i = segments.length - 1; i >= 0; i--) {
+        const seg = segments[i];
+        const halfW = seg.width / 2;
+
+        const p1 = project(seg.x - halfW, seg.y, seg.z);
+        const p2 = project(seg.x + halfW, seg.y, seg.z);
+        const p3 = project(seg.x + halfW, seg.y, seg.z + seg.length);
+        const p4 = project(seg.x - halfW, seg.y, seg.z + seg.length);
+
+        if (p1 && p2 && p3 && p4) {
+          // Track surface polygon
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.lineTo(p3.x, p3.y);
+          ctx.lineTo(p4.x, p4.y);
+          ctx.closePath();
+
+          ctx.fillStyle = `hsl(${seg.colorHue}, 60%, 12%)`;
+          ctx.fill();
+
+          ctx.strokeStyle = `hsl(${seg.colorHue}, 100%, 55%)`;
+          ctx.lineWidth = Math.max(1, p1.scale * 0.08);
+          ctx.stroke();
+
+          // Speed Booster Pad
+          if (seg.booster) {
+            const bHalf = seg.booster.width / 2;
+            const bp1 = project(seg.x + seg.booster.x - bHalf, seg.y + 0.05, seg.z + 2);
+            const bp2 = project(seg.x + seg.booster.x + bHalf, seg.y + 0.05, seg.z + 2);
+            const bp3 = project(seg.x + seg.booster.x + bHalf, seg.y + 0.05, seg.z + 8);
+            const bp4 = project(seg.x + seg.booster.x - bHalf, seg.y + 0.05, seg.z + 8);
+
+            if (bp1 && bp2 && bp3 && bp4) {
+              ctx.beginPath();
+              ctx.moveTo(bp1.x, bp1.y);
+              ctx.lineTo(bp2.x, bp2.y);
+              ctx.lineTo(bp3.x, bp3.y);
+              ctx.lineTo(bp4.x, bp4.y);
+              ctx.closePath();
+              ctx.fillStyle = 'rgba(250, 204, 21, 0.7)';
+              ctx.fill();
+              ctx.strokeStyle = '#fef08a';
+              ctx.stroke();
+            }
+          }
+
+          // Red Obstacle Block 3D Prism
+          if (seg.obstacle) {
+            const ob = seg.obstacle;
+            const obHalf = ob.width / 2;
+            const op1 = project(seg.x + ob.x - obHalf, seg.y, seg.z + 5);
+            const op2 = project(seg.x + ob.x + obHalf, seg.y, seg.z + 5);
+            const opTop1 = project(seg.x + ob.x - obHalf, seg.y + ob.height, seg.z + 5);
+            const opTop2 = project(seg.x + ob.x + obHalf, seg.y + ob.height, seg.z + 5);
+
+            if (op1 && op2 && opTop1 && opTop2) {
+              ctx.beginPath();
+              ctx.moveTo(op1.x, op1.y);
+              ctx.lineTo(op2.x, op2.y);
+              ctx.lineTo(opTop2.x, opTop2.y);
+              ctx.lineTo(opTop1.x, opTop1.y);
+              ctx.closePath();
+              ctx.fillStyle = 'rgba(239, 68, 68, 0.9)';
+              ctx.fill();
+              ctx.strokeStyle = '#fca5a5';
+              ctx.lineWidth = 2;
+              ctx.stroke();
+            }
+          }
+        }
+      }
+
+      // Render Player Sphere
+      if (state === 'PLAYING') {
+        const pScreen = project(player.x, player.y, player.z);
+        if (pScreen) {
+          const radiusPx = player.radius * pScreen.scale;
+          const skin = skinColors[player.skin];
+
+          // Neon Ground Shadow
+          ctx.beginPath();
+          ctx.ellipse(pScreen.x, pScreen.y + radiusPx * 0.8, radiusPx * 0.9, radiusPx * 0.3, 0, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+          ctx.fill();
+
+          // Sphere Outer Glow
+          ctx.beginPath();
+          ctx.arc(pScreen.x, pScreen.y, radiusPx * 1.3, 0, Math.PI * 2);
+          ctx.fillStyle = skin.glow;
+          ctx.fill();
+
+          // 3D Shaded Sphere
+          const sphereGrad = ctx.createRadialGradient(
+            pScreen.x - radiusPx * 0.3,
+            pScreen.y - radiusPx * 0.3,
+            radiusPx * 0.1,
+            pScreen.x,
+            pScreen.y,
+            radiusPx
+          );
+          sphereGrad.addColorStop(0, '#ffffff');
+          sphereGrad.addColorStop(0.4, skin.main);
+          sphereGrad.addColorStop(1, skin.shadow);
+
+          ctx.beginPath();
+          ctx.arc(pScreen.x, pScreen.y, radiusPx, 0, Math.PI * 2);
+          ctx.fillStyle = sphereGrad;
+          ctx.fill();
+
+          // Rolling Grid Lines on Sphere
+          ctx.save();
+          ctx.translate(pScreen.x, pScreen.y);
+          ctx.rotate(player.rollAngle);
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+          ctx.lineWidth = 1.5;
+          ctx.beginPath();
+          ctx.arc(0, 0, radiusPx * 0.7, 0, Math.PI * 2);
+          ctx.stroke();
+          ctx.restore();
+        }
+      }
+
+      // Render Particles
+      for (let p of particles) {
+        const pScreen = project(p.x, p.y, p.z);
+        if (pScreen) {
+          ctx.beginPath();
+          ctx.arc(pScreen.x, pScreen.y, p.size * (pScreen.scale / 30) * p.life, 0, Math.PI * 2);
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.life;
+          ctx.fill();
+          ctx.globalAlpha = 1.0;
+        }
+      }
+
+      requestAnimationFrame(loop);
+    }
+
+    requestAnimationFrame(loop);
+  </script>
+</body>
+</html>

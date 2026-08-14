@@ -1,14 +1,23 @@
 import React from 'react';
 import { X, Sparkles, Tag, GitCommit, CheckCircle2 } from 'lucide-react';
 
-export const APP_VERSION = 'v2.12.0';
+export const APP_VERSION = 'v2.13.0';
 
 export const ChangelogModal = ({ onClose }) => {
   const versions = [
     {
+      version: 'v2.13.0',
+      date: 'August 14, 2026',
+      tag: 'Latest Release',
+      changes: [
+        'Added Linewize & School Filter Safe games: Cyber Slope 3D and Cyber Flap.',
+        'Zero external domain requests: built with 100% local canvas rendering & real-time Web Audio API sound synthesis.',
+        'Added "LINEWIZE SAFE" verified shield badge across game cards.'
+      ]
+    },
+    {
       version: 'v2.12.0',
       date: 'August 13, 2026',
-      tag: 'Latest Release',
       changes: [
         'Added "Made by Jace" creator branding to the main header and footer.'
       ]
