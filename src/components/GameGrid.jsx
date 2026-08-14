@@ -24,62 +24,8 @@ export const GameGrid = ({
     return 0;
   });
 
-  const featuredGames = games.filter((g) => g.featured);
-
   return (
     <section className="max-w-7xl mx-auto px-4 lg:px-8 py-6">
-      
-      {/* Featured Banner (Shown when no active search/category filter) */}
-      {!searchQuery && selectedCategory === 'All' && !showFavoritesOnly && featuredGames.length > 0 && (
-        <div className="mb-8 p-6 rounded-3xl bg-gradient-to-r from-indigo-950/80 via-zinc-900 to-purple-950/80 border border-indigo-500/30 relative overflow-hidden shadow-2xl">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
-          
-          <div className="flex items-center gap-2 text-indigo-400 text-xs font-bold font-mono tracking-widest uppercase mb-2">
-            <Sparkles className="w-4 h-4 text-amber-400" /> Featured Unblocked Highlight
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center relative z-10">
-            <div className="lg:col-span-7 space-y-3">
-              <h2 className="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
-                {featuredGames[0].title}
-              </h2>
-              <p className="text-zinc-300 text-sm leading-relaxed max-w-xl">
-                {featuredGames[0].description}
-              </p>
-              
-              <div className="flex flex-wrap items-center gap-3 pt-2">
-                <button
-                  id="featured-play-btn"
-                  onClick={() => onPlayGame(featuredGames[0])}
-                  className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold shadow-lg shadow-indigo-600/30 flex items-center gap-2 transition-all hover:scale-105"
-                >
-                  <Gamepad2 className="w-4 h-4" /> Play Now in Iframe
-                </button>
-                <div className="px-3 py-1.5 rounded-lg bg-zinc-900/80 border border-zinc-800 text-xs text-amber-400 font-bold">
-                  ★ {featuredGames[0].rating} Rating
-                </div>
-              </div>
-            </div>
-
-            <div 
-              className="lg:col-span-5 relative aspect-video rounded-2xl overflow-hidden border border-zinc-700/60 shadow-xl cursor-pointer group"
-              onClick={() => onPlayGame(featuredGames[0])}
-            >
-              <img
-                src={featuredGames[0].thumbnail}
-                alt={featuredGames[0].title}
-                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                <div className="w-14 h-14 rounded-full bg-indigo-600 text-white flex items-center justify-center shadow-xl shadow-indigo-600/50">
-                  <Gamepad2 className="w-7 h-7" />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
       {/* Grid Controls Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6 pb-4 border-b border-zinc-800/80">
         <div>
