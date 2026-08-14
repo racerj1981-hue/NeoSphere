@@ -1,14 +1,42 @@
 import React from 'react';
 import { X, Sparkles, Tag, GitCommit, CheckCircle2 } from 'lucide-react';
 
-export const APP_VERSION = 'v2.14.0';
+export const APP_VERSION = 'v2.16.0';
 
 export const ChangelogModal = ({ onClose }) => {
   const versions = [
     {
-      version: 'v2.14.0',
+      version: 'v2.16.0',
       date: 'August 14, 2026',
       tag: 'Latest Release',
+      changes: [
+        'Added NeoSphere Multi-Room Chat Lounge with real-time multi-tab & multi-window instant synchronization.',
+        'Channels included: #general, #game-tips, #paper-io-2, #stealth-mode, and #off-topic.',
+        'Customizable gamer identity: personalized nickname, avatar badge, tag color themes, and custom status.',
+        'Rich messaging support: quick emoji reactions, @mentions, reply quotes, message search, and retro synthesizer audio chimes.',
+        'Built-in Stealth Disguise Mode: one-click switch into a convincing Google Classroom / Study Group notes interface.',
+        'Floating bottom-right launcher widget + header launcher + in-game player mini chat access.'
+      ]
+    },
+    {
+      version: 'v2.15.1',
+      date: 'August 14, 2026',
+      changes: [
+        'Fixed Paper.io 2 execution: neutralized anti-debugging freeze loop, replaced remote SDK with instant offline mock provider, and fixed DOM element initialization order.',
+        'Paper.io 2 now loads instantaneously and runs 100% offline without external network blocks.'
+      ]
+    },
+    {
+      version: 'v2.15.0',
+      date: 'August 14, 2026',
+      changes: [
+        'Added authentic Paper.io 2 (by Voodoo) — 100% self-hosted and Linewize/School Firewall safe.',
+        'Bundled complete HTML5 canvas engine, textures, and bot multiplayer logic directly in the application with 0 external network requests.'
+      ]
+    },
+    {
+      version: 'v2.14.0',
+      date: 'August 14, 2026',
       changes: [
         'Removed the Featured Unblocked Highlight banner for a cleaner, full-width game catalog layout.'
       ]

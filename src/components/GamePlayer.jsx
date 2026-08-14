@@ -10,7 +10,8 @@ import {
   Code,
   ExternalLink,
   Shield,
-  Gamepad2
+  Gamepad2,
+  MessageSquare
 } from 'lucide-react';
 
 export const GamePlayer = ({
@@ -18,6 +19,7 @@ export const GamePlayer = ({
   isFavorite,
   onToggleFavorite,
   onClose,
+  onOpenChat,
 }) => {
   const [useFallback, setUseFallback] = useState(false);
   const [isTheaterMode, setIsTheaterMode] = useState(false);
@@ -134,6 +136,19 @@ export const GamePlayer = ({
               <ExternalLink className="w-3.5 h-3.5 text-indigo-400" />
               <span className="hidden md:inline">About:Blank</span>
             </button>
+
+            {/* Chat Lounge Button */}
+            {onOpenChat && (
+              <button
+                id="player-chat-btn"
+                onClick={onOpenChat}
+                className="px-2 py-1.5 rounded-lg bg-indigo-950/80 hover:bg-indigo-900 border border-indigo-500/40 text-indigo-200 transition-all flex items-center gap-1 text-xs font-semibold"
+                title="Open Multi-Room Chat Lounge"
+              >
+                <MessageSquare className="w-3.5 h-3.5 text-indigo-400" />
+                <span className="hidden md:inline">Chat</span>
+              </button>
+            )}
 
             {/* Favorite Button */}
             <button

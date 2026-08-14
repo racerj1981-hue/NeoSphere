@@ -2,10 +2,24 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import { defineConfig } from 'vite';
+import express from 'express';
+import { setupChatApi } from './src/server/chatApi.js';
 
 export default defineConfig({
   base: './',
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    {
+      name: 'chat-api-plugin',
+      configureServer(server) {
+        const app = express();
+        app.use(express.json());
+        setupChatApi(app);
+        server.middlewares.use(app);
+      }
+    }
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),
@@ -17,3 +31,4 @@ export default defineConfig({
     hmr: process.env.DISABLE_HMR !== 'true',
   },
 });
+

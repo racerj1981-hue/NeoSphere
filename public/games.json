@@ -89,5 +89,25 @@
     "isLinewizeSafe": true,
     "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
     "allow": "autoplay; fullscreen; pointer-lock; gamepad"
+  },
+  {
+    "id": "paper-io-2",
+    "title": "Paper.io 2",
+    "description": "The official real Paper.io 2 game by Voodoo! Expand your colored territory, bite enemy trails, and conquer 100% of the arena in this smooth multiplayer IO classic. Bundled locally to guarantee it works on Linewize and school networks.",
+    "category": ["Action", "Casual", "Strategy", "Arcade"],
+    "iframeUrl": "./games/paper-io-2/index.html",
+    "thumbnail": "./assets/games/paper-io-2.png",
+    "controls": [
+      "Arrow Keys / WASD or Mouse Movement - Steer Paper Block",
+      "Enclose space to claim territory",
+      "Bite enemy tails to eliminate opponents"
+    ],
+    "author": "Voodoo",
+    "rating": 4.9,
+    "playCount": 14200,
+    "releaseYear": 2019,
+    "isLinewizeSafe": true,
+    "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
+    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
   }
 ]
