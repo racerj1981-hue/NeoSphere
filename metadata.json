@@ -1,0 +1,6 @@
+{
+  "name": "NeoSphere",
+  "description": "NeoSphere - A clean, modern unblocked games portal storing game iframe configurations in JSON, featuring categories, search, favorites, full-screen playback, and custom game submission.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

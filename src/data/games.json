@@ -1,0 +1,54 @@
+[
+  {
+    "id": "geometry-dash-lite",
+    "title": "Geometry Dash Lite",
+    "description": "Geometry Dash Lite is a free rhythm-based platformer by RobTop Games. Play a browser version here with 15 classic levels, from Stereo Madness to Clubstep.",
+    "category": ["Action", "Strategy", "Platformer", "Arcade"],
+    "iframeUrl": "https://lolygames.github.io/gd-lit/",
+    "thumbnail": "https://i.ibb.co/gpcJVSF/Geomtry-dash-lite.jpg",
+    "controls": [
+      "Space / Up Arrow / Left Click - Jump"
+    ],
+    "author": "RobTop / LolyGames",
+    "rating": 4.9,
+    "playCount": 3850,
+    "releaseYear": 2023,
+    "sandbox": "allow-scripts allow-popups allow-forms allow-same-origin allow-popups-to-escape-sandbox allow-downloads allow-storage-access-by-user-activation",
+    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
+  },
+  {
+    "id": "slope",
+    "title": "Slope",
+    "description": "Drive a high-speed rolling ball down a randomized 3D neon slope. Dodge red blocks and hazardous gaps in this fast-paced endless runner!",
+    "category": ["Action", "Arcade", "Strategy"],
+    "iframeUrl": "https://slopeio.org/game/slope-gm/",
+    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYhzoE17hePAfN77NZ8YLaioEEEnG6VjATChkjQgeVdQ&s=10",
+    "controls": [
+      "Left / Right Arrows or A / D - Steer Ball"
+    ],
+    "author": "Y8 / SlopeIO",
+    "rating": 4.8,
+    "playCount": 4120,
+    "releaseYear": 2024,
+    "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-orientation-lock allow-presentation allow-downloads",
+    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
+  },
+  {
+    "id": "stickman-hook",
+    "title": "Stickman Hook",
+    "description": "Swing through vibrant obstacle courses using grappling hooks, momentum, and acrobatic jumps in Madbox's hit physics platformer!",
+    "category": ["Action", "Puzzle", "Strategy"],
+    "iframeUrl": "https://stickmanhook.github.io/",
+    "thumbnail": "https://stickmanhook-2.github.io/cache/data/image/options/favicon-s512x512.png",
+    "controls": [
+      "Spacebar / Left Mouse Click - Hold to Grapple & Swing",
+      "Release - Launch & Perform Acrobatic Jumps"
+    ],
+    "author": "Madbox",
+    "rating": 4.9,
+    "playCount": 5240,
+    "releaseYear": 2024,
+    "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
+    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
+  }
+]
