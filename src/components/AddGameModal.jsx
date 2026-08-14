@@ -48,7 +48,7 @@ export const AddGameModal = ({ onAddGame, onClose }) => {
       controls: controlsInput.split(',').map((c) => c.trim()).filter(Boolean),
       author: author.trim() || 'Custom Creator',
       rating: 5.0,
-      playCount: 1,
+      playCount: 0,
       isCustom: true,
       sandbox: 'allow-scripts allow-same-origin allow-popups',
       allow: 'autoplay; fullscreen',

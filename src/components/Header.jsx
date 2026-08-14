@@ -5,8 +5,7 @@ import {
   Search, 
   PlusCircle, 
   ShieldAlert, 
-  Star,
-  MessageSquare
+  Star
 } from 'lucide-react';
 
 export const Header = ({
@@ -21,10 +20,7 @@ export const Header = ({
   onOpenPanicSettings,
   onTriggerPanic,
   onOpenJsonViewer,
-  onOpenChangelog,
-  onOpenChat,
-  unreadChatCount = 0,
-  onlineCount = 1
+  onOpenChangelog
 }) => {
   return (
     <header className="sticky top-0 z-40 bg-zinc-950/90 backdrop-blur-md border-b border-zinc-800/80 px-4 lg:px-8 py-3 transition-all">
@@ -70,20 +66,8 @@ export const Header = ({
             </button>
           </div>
 
-          {/* Mobile Quick Action Triggers */}
+          {/* Mobile Panic Trigger */}
           <div className="flex items-center gap-2 md:hidden">
-            <button
-              id="mobile-chat-btn"
-              onClick={onOpenChat}
-              title="Open Chat Lounge"
-              className="relative p-2 rounded-lg bg-indigo-950/80 border border-indigo-500/40 text-indigo-300 hover:bg-indigo-900 active:scale-95 transition-all"
-            >
-              <MessageSquare className="w-5 h-5" />
-              {unreadChatCount > 0 && (
-                <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-red-500 rounded-full ring-2 ring-zinc-950" />
-              )}
-            </button>
-
             <button
               id="mobile-panic-btn"
               onClick={onTriggerPanic}
@@ -131,29 +115,6 @@ export const Header = ({
         {/* Quick Action Tools & Modals */}
         <div className="flex items-center gap-2.5 w-full md:w-auto justify-end overflow-x-auto pb-1 md:pb-0">
           
-          {/* Chat Lounge Button */}
-          <button
-            id="header-chat-btn"
-            onClick={onOpenChat}
-            className="px-3 py-2 text-xs font-semibold rounded-xl bg-indigo-950/60 hover:bg-indigo-900/80 border border-indigo-500/40 text-indigo-200 hover:text-white flex items-center gap-1.5 transition-all whitespace-nowrap active:scale-95 shadow-md shadow-indigo-950/40"
-            title="Open NeoSphere Multi-Room Chat Lounge"
-          >
-            <div className="relative flex items-center">
-              <MessageSquare className="w-3.5 h-3.5 text-indigo-400" />
-              {unreadChatCount > 0 ? (
-                <span className="absolute -top-1.5 -right-1.5 px-1 py-0.2 bg-red-500 text-white text-[9px] font-mono font-bold rounded-full">
-                  {unreadChatCount}
-                </span>
-              ) : (
-                <span className="absolute -top-1 -right-1 w-1.5 h-1.5 bg-emerald-400 rounded-full animate-pulse" />
-              )}
-            </div>
-            <span>Chat Lounge</span>
-            <span className="text-[10px] font-mono text-emerald-400 bg-emerald-950/70 border border-emerald-500/30 px-1 rounded-md">
-              {onlineCount} live
-            </span>
-          </button>
-
           {/* Favorites Filter Button */}
           <button
             id="favorites-toggle-btn"

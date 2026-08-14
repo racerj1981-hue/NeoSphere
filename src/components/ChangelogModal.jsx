@@ -1,21 +1,23 @@
 import React from 'react';
 import { X, Sparkles, Tag, GitCommit, CheckCircle2 } from 'lucide-react';
 
-export const APP_VERSION = 'v2.16.0';
+export const APP_VERSION = 'v2.16.1';
 
 export const ChangelogModal = ({ onClose }) => {
   const versions = [
     {
-      version: 'v2.16.0',
+      version: 'v2.16.1',
       date: 'August 14, 2026',
       tag: 'Latest Release',
       changes: [
-        'Added NeoSphere Multi-Room Chat Lounge with real-time multi-tab & multi-window instant synchronization.',
-        'Channels included: #general, #game-tips, #paper-io-2, #stealth-mode, and #off-topic.',
-        'Customizable gamer identity: personalized nickname, avatar badge, tag color themes, and custom status.',
-        'Rich messaging support: quick emoji reactions, @mentions, reply quotes, message search, and retro synthesizer audio chimes.',
-        'Built-in Stealth Disguise Mode: one-click switch into a convincing Google Classroom / Study Group notes interface.',
-        'Floating bottom-right launcher widget + header launcher + in-game player mini chat access.'
+        'Updated Paper.io 2 official game icon / cover art in the game catalog and header view.'
+      ]
+    },
+    {
+      version: 'v2.16.0',
+      date: 'August 14, 2026',
+      changes: [
+        'Reset all default game play counts to 0 plays across the entire catalog and JSON dataset.'
       ]
     },
     {
