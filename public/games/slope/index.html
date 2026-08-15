@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Slope</title>
+  <link rel="stylesheet" href="TemplateData/style.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #231F20;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    }
+    .webgl-content {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #gameContainer {
+      width: 100% !important;
+      height: 100% !important;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    #gameContainer canvas {
+      width: 100% !important;
+      height: 100% !important;
+      display: block;
+    }
+    .touch-controls {
+      display: none;
+      position: absolute;
+      bottom: 24px;
+      left: 0;
+      width: 100%;
+      padding: 0 28px;
+      justify-content: space-between;
+      z-index: 50;
+      pointer-events: none;
+    }
+    .touch-btn {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: rgba(15, 23, 42, 0.7);
+      backdrop-filter: blur(8px);
+      border: 2px solid rgba(56, 189, 248, 0.5);
+      color: #38bdf8;
+      font-size: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: auto;
+      touch-action: manipulation;
+      box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+      cursor: pointer;
+    }
+    .touch-btn:active {
+      background: rgba(56, 189, 248, 0.4);
+      transform: scale(0.94);
+    }
+    @media (hover: none) and (pointer: coarse) {
+      .touch-controls {
+        display: flex;
+      }
+    }
+  </style>
+  <script>
+    // Linwize and school filter resilient exception handler
+    window.onerror = function(msg) {
+      console.warn('Game engine status:', msg);
+      return true;
+    };
+    window.addEventListener('unhandledrejection', function(e) {
+      e.preventDefault();
+    });
+
+    // Safe AudioContext resume wrapper
+    (function() {
+      try {
+        var AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtx && AudioCtx.prototype && AudioCtx.prototype.resume) {
+          var origResume = AudioCtx.prototype.resume;
+          AudioCtx.prototype.resume = function() {
+            try {
+              var p = origResume.apply(this, arguments);
+              if (p && typeof p.catch === 'function') {
+                return p.catch(function() {});
+              }
+              return Promise.resolve();
+            } catch(err) {
+              return Promise.resolve();
+            }
+          };
+        }
+      } catch(err) {}
+    })();
+  </script>
+  <script src="TemplateData/UnityProgress.js"></script>
+  <script src="TemplateData/unityloader41.js"></script>
+</head>
+<body>
+  <div class="webgl-content">
+    <div id="gameContainer"></div>
+  </div>
+
+  <div class="touch-controls">
+    <div class="touch-btn" id="touch-left">◀</div>
+    <div class="touch-btn" id="touch-right">▶</div>
+  </div>
+
+  <script>
+    var gameInstance = UnityLoader.instantiate("gameContainer", "Build/slope.json", {
+      onProgress: UnityProgress,
+      compatibilityCheck: function(unityInstance, onsuccess, onerror) {
+        if (typeof onsuccess === 'function') onsuccess();
+      },
+      Module: {
+        onRuntimeInitialized: function() {
+          if (typeof UnityProgress === 'function') {
+            UnityProgress(gameInstance, "complete");
+          }
+          console.log("Slope WebGL engine ready.");
+        }
+      }
+    });
+
+    // Touch control simulators (left/right arrow keys and A/D keys)
+    function simulateKey(keyCode, key, code, type) {
+      var evt = new KeyboardEvent(type, {
+        bubbles: true,
+        cancelable: true,
+        keyCode: keyCode,
+        which: keyCode,
+        key: key,
+        code: code
+      });
+      window.dispatchEvent(evt);
+      document.dispatchEvent(evt);
+      var canvas = document.querySelector('#gameContainer canvas');
+      if (canvas) canvas.dispatchEvent(evt);
+    }
+
+    var leftBtn = document.getElementById('touch-left');
+    var rightBtn = document.getElementById('touch-right');
+
+    if (leftBtn && rightBtn) {
+      var handleLeftDown = function(e) {
+        if (e.cancelable) e.preventDefault();
+        simulateKey(37, 'ArrowLeft', 'ArrowLeft', 'keydown');
+        simulateKey(65, 'a', 'KeyA', 'keydown');
+      };
+      var handleLeftUp = function(e) {
+        if (e.cancelable) e.preventDefault();
+        simulateKey(37, 'ArrowLeft', 'ArrowLeft', 'keyup');
+        simulateKey(65, 'a', 'KeyA', 'keyup');
+      };
+      leftBtn.addEventListener('touchstart', handleLeftDown, { passive: false });
+      leftBtn.addEventListener('touchend', handleLeftUp, { passive: false });
+      leftBtn.addEventListener('mousedown', handleLeftDown);
+      leftBtn.addEventListener('mouseup', handleLeftUp);
+
+      var handleRightDown = function(e) {
+        if (e.cancelable) e.preventDefault();
+        simulateKey(39, 'ArrowRight', 'ArrowRight', 'keydown');
+        simulateKey(68, 'd', 'KeyD', 'keydown');
+      };
+      var handleRightUp = function(e) {
+        if (e.cancelable) e.preventDefault();
+        simulateKey(39, 'ArrowRight', 'ArrowRight', 'keyup');
+        simulateKey(68, 'd', 'KeyD', 'keyup');
+      };
+      rightBtn.addEventListener('touchstart', handleRightDown, { passive: false });
+      rightBtn.addEventListener('touchend', handleRightUp, { passive: false });
+      rightBtn.addEventListener('mousedown', handleRightDown);
+      rightBtn.addEventListener('mouseup', handleRightUp);
+    }
+
+    // Auto resize canvas
+    window.addEventListener('resize', function() {
+      if (gameInstance && gameInstance.Module && gameInstance.Module.setCanvasSize) {
+        gameInstance.Module.setCanvasSize(window.innerWidth, window.innerHeight);
+      }
+    });
+
+    // Auto-focus game canvas on interaction
+    window.addEventListener('click', function() {
+      var canvas = document.querySelector('#gameContainer canvas');
+      if (canvas && document.activeElement !== canvas) {
+        canvas.focus();
+      }
+    });
+  </script>
+</body>
+</html>

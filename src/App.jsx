@@ -241,6 +241,20 @@ export default function App() {
 
   // Play game handler (increments play count, persists locally, and broadcasts across tabs/windows)
   const handlePlayGame = (gameToPlay) => {
+    // If it is an external link or form redirect (like Request Games), redirect immediately
+    if (gameToPlay.redirectUrl || gameToPlay.isExternal) {
+      const targetUrl = gameToPlay.redirectUrl || gameToPlay.iframeUrl;
+      try {
+        const win = window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        if (!win) {
+          window.location.href = targetUrl;
+        }
+      } catch (err) {
+        window.location.href = targetUrl;
+      }
+      return;
+    }
+
     let updatedCount = 0;
 
     setGames((prevGames) => {

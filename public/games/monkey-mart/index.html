@@ -144,6 +144,138 @@
 
 	</style> 
   <script src="patch/js/poki-sdk.js"></script>
+  <script>
+    // Global resilience and school filter error suppression
+    window.onerror = function(msg, url, lineNo, columnNo, error) {
+      console.warn('Game engine warning suppressed:', msg);
+      return true;
+    };
+    window.addEventListener('unhandledrejection', function(event) {
+      event.preventDefault();
+    });
+
+    // Safe AudioContext resume wrapper
+    (function() {
+      try {
+        var AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (AudioCtx && AudioCtx.prototype && AudioCtx.prototype.resume) {
+          var origResume = AudioCtx.prototype.resume;
+          AudioCtx.prototype.resume = function() {
+            try {
+              var p = origResume.apply(this, arguments);
+              if (p && typeof p.catch === 'function') {
+                return p.catch(function() {});
+              }
+              return Promise.resolve();
+            } catch(e) {
+              return Promise.resolve();
+            }
+          };
+        }
+      } catch(e) {}
+    })();
+
+    // Complete Offline GameAnalytics & Remote Configs Stub
+    (function(window) {
+      'use strict';
+      var noop = function() {};
+      var listeners = [];
+      var gaInstance = {
+        init: noop,
+        initialize: function(gameKey, gameSecret) {
+          setTimeout(function() {
+            for (var i = 0; i < listeners.length; i++) {
+              if (listeners[i] && typeof listeners[i].onRemoteConfigsUpdated === 'function') {
+                try { listeners[i].onRemoteConfigsUpdated(); } catch(e) {}
+              }
+            }
+          }, 0);
+        },
+        addRemoteConfigsListener: function(l) {
+          if (l) listeners.push(l);
+        },
+        removeRemoteConfigsListener: function(l) {
+          var idx = listeners.indexOf(l);
+          if (idx > -1) listeners.splice(idx, 1);
+        },
+        setEnabledInfoLog: noop,
+        setEnabledVerboseLog: noop,
+        setEnabledEventSubmission: noop,
+        setEnabledManualSessionHandling: noop,
+        configureBuild: noop,
+        configureAvailableCustomDimensions01: noop,
+        configureAvailableCustomDimensions02: noop,
+        configureAvailableCustomDimensions03: noop,
+        configureAvailableResourceCurrencies: noop,
+        configureAvailableResourceItemTypes: noop,
+        configureUserId: noop,
+        configureGameEngineVersion: noop,
+        configureSdkGameEngineVersion: noop,
+        startSession: noop,
+        endSession: noop,
+        addBusinessEvent: noop,
+        addResourceEvent: noop,
+        addProgressionEvent: noop,
+        addProgressionEventWithScore: noop,
+        addDesignEvent: noop,
+        addDesignEventWithValue: noop,
+        addErrorEvent: noop,
+        setCustomDimension01: noop,
+        setCustomDimension02: noop,
+        setCustomDimension03: noop,
+        isRemoteConfigsReady: function() { return true; },
+        getRemoteConfigsContentAsString: function() { return "{}"; },
+        getRemoteConfigsValueAsString: function(key, defaultValue) {
+          return typeof defaultValue === 'string' ? defaultValue : "";
+        },
+        getRemoteConfigsValueAsStringWithDefaultValue: function(key, defaultValue) {
+          return typeof defaultValue === 'string' ? defaultValue : "";
+        }
+      };
+
+      window.GameAnalytics = gaInstance;
+      window.gameanalytics = {
+        GameAnalytics: gaInstance,
+        init: noop,
+        initialize: gaInstance.initialize,
+        addRemoteConfigsListener: gaInstance.addRemoteConfigsListener,
+        removeRemoteConfigsListener: gaInstance.removeRemoteConfigsListener,
+        setEnabledInfoLog: noop,
+        setEnabledVerboseLog: noop,
+        setEnabledEventSubmission: noop,
+        setEnabledManualSessionHandling: noop,
+        configureBuild: noop,
+        configureAvailableCustomDimensions01: noop,
+        configureAvailableCustomDimensions02: noop,
+        configureAvailableCustomDimensions03: noop,
+        configureAvailableResourceCurrencies: noop,
+        configureAvailableResourceItemTypes: noop,
+        configureUserId: noop,
+        configureGameEngineVersion: noop,
+        configureSdkGameEngineVersion: noop,
+        startSession: noop,
+        endSession: noop,
+        addBusinessEvent: noop,
+        addResourceEvent: noop,
+        addProgressionEvent: noop,
+        addProgressionEventWithScore: noop,
+        addDesignEvent: noop,
+        addDesignEventWithValue: noop,
+        addErrorEvent: noop,
+        setCustomDimension01: noop,
+        setCustomDimension02: noop,
+        setCustomDimension03: noop,
+        isRemoteConfigsReady: function() { return true; },
+        getRemoteConfigsContentAsString: function() { return "{}"; },
+        getRemoteConfigsValueAsString: function(key, defaultValue) {
+          return typeof defaultValue === 'string' ? defaultValue : "";
+        },
+        getRemoteConfigsValueAsStringWithDefaultValue: function(key, defaultValue) {
+          return typeof defaultValue === 'string' ? defaultValue : "";
+        }
+      };
+    })(window);
+  </script>
  </head> 
  <body> 
   <div id="app-container" class="canvas-app-container"> 
@@ -265,28 +397,21 @@
 
             var old_preloadAndCallMain = Module._preloadAndCallMain;
             Module._preloadAndCallMain = function () {
-                // 
                 // Delete all LiveUpdate files stored in IDBFS
-                var dir = DMSYS.GetUserPersistentDataRoot();
-                var resDir = _HashSHA1("MonkeyMart");
                 try {
-                    FS.unlink(dir + "/." + resDir + "/liveupdate.arcd");
+                    if (typeof DMSYS !== "undefined" && typeof FS !== "undefined" && DMSYS.GetUserPersistentDataRoot) {
+                        var dir = DMSYS.GetUserPersistentDataRoot();
+                        var resDir = _HashSHA1("MonkeyMart");
+                        try { FS.unlink(dir + "/." + resDir + "/liveupdate.arcd"); } catch (e) {}
+                        try { FS.unlink(dir + "/." + resDir + "/liveupdate.arci"); } catch (e) {}
+                        try { FS.unlink(dir + "/." + resDir + "/liveupdate.arci.tmp"); } catch (e) {}
+                        try { FS.unlink(dir + "/." + resDir + "/liveupdate.mounts"); } catch (e) {}
+                    }
                 } catch (e) {}
-                try {
-                    FS.unlink(dir + "/." + resDir + "/liveupdate.arci");
-                } catch (e) {}
-                try {
-                    FS.unlink(dir + "/." + resDir + "/liveupdate.arci.tmp");
-                } catch (e) {}
-                try {
-                    FS.unlink(dir + "/." + resDir + "/liveupdate.mounts");
-                } catch (e) {}
-                // 
 
-                if (Module._archiveLoaded) {
-                    // 
+                if (typeof old_preloadAndCallMain === "function") {
+                    old_preloadAndCallMain();
                 }
-                old_preloadAndCallMain();
             };
         </script> 
   <script id="engine-start" type="text/javascript">

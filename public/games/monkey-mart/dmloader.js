@@ -83,15 +83,19 @@ var FileLoader = {
         };
         request.onload = function(xhr, e) {
             if (xhr.readyState === 4) {
-                if (xhr.status === 200) {
+                if (xhr.status === 200 || xhr.status === 304 || xhr.status === 0) {
                     var res = xhr.response;
                     if (responseType == "json" && typeof res === "string") {
-                        onload(JSON.parse(res));
+                        try {
+                            onload(JSON.parse(res));
+                        } catch(err) {
+                            onerror("Error parsing JSON: " + err);
+                        }
                     } else {
                         onload(res);
                     }
                 } else {
-                    onerror("Error loading '" + url + "' (" + e + ")");
+                    onerror("Error loading '" + url + "' (" + xhr.status + ")");
                 }
             }
         };

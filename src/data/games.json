@@ -2,14 +2,16 @@
   {
     "id": "geometry-dash-lite",
     "title": "Geometry Dash Lite",
-    "description": "Geometry Dash Lite is a free rhythm-based platformer by RobTop Games. Play a browser version here with 15 classic levels, from Stereo Madness to Clubstep.",
+    "description": "Geometry Dash Lite is the iconic rhythm-based platformer by RobTop Games. Play with 15 classic levels from Stereo Madness to Clubstep, full soundtrack, and custom icon colors. 100% offline & school-filter safe.",
     "category": ["Action", "Strategy", "Platformer", "Arcade"],
-    "iframeUrl": "https://lolygames.github.io/gd-lit/",
+    "iframeUrl": "./games/geometry-dash-lite/index.html",
     "thumbnail": "./assets/games/geometry-dash-lite.png",
     "controls": [
-      "Space / Up Arrow / Left Click - Jump"
+      "Space / Up Arrow / Left Click / Tap - Jump & Fly",
+      "Hold - Multi-jump / Fly Ship upward",
+      "P / Esc - Pause Game"
     ],
-    "author": "RobTop / LolyGames",
+    "author": "RobTop Games",
     "rating": 4.9,
     "playCount": 0,
     "releaseYear": 2023,
@@ -19,30 +21,32 @@
   {
     "id": "slope",
     "title": "Slope",
-    "description": "Drive a high-speed rolling ball down a randomized 3D neon slope. Dodge red blocks and hazardous gaps in this fast-paced endless runner!",
+    "description": "Drive a high-speed rolling ball down a randomized 3D neon slope. Dodge red blocks, master steep drop-offs, and navigate hazardous ramps in this iconic 3D runner!",
     "category": ["Action", "Arcade", "Strategy"],
-    "iframeUrl": "https://slopeio.org/game/slope-gm/",
-    "thumbnail": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYhzoE17hePAfN77NZ8YLaioEEEnG6VjATChkjQgeVdQ&s=10",
+    "iframeUrl": "./games/slope/index.html",
+    "thumbnail": "./assets/games/slope.png",
     "controls": [
-      "Left / Right Arrows or A / D - Steer Ball"
+      "Left / Right Arrows or A / D - Steer Ball",
+      "Touch Left / Right on screen (Mobile / Touchscreen)"
     ],
-    "author": "Y8 / SlopeIO",
-    "rating": 4.8,
+    "author": "Y8 / Rob Kay",
+    "rating": 4.7,
     "playCount": 0,
-    "releaseYear": 2024,
+    "releaseYear": 2018,
     "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-orientation-lock allow-presentation allow-downloads",
     "allow": "autoplay; fullscreen; pointer-lock; gamepad"
   },
   {
     "id": "stickman-hook",
     "title": "Stickman Hook",
-    "description": "Swing through vibrant obstacle courses using grappling hooks, momentum, and acrobatic jumps in Madbox's hit physics platformer!",
-    "category": ["Action", "Puzzle", "Strategy"],
-    "iframeUrl": "https://stickmanhook.github.io/",
-    "thumbnail": "https://stickmanhook-2.github.io/cache/data/image/options/favicon-s512x512.png",
+    "description": "Swing through vibrant obstacle courses using grappling hooks, momentum, and acrobatic jumps in Madbox's hit physics platformer! 100% offline & school-filter safe.",
+    "category": ["Action", "Arcade", "Casual", "Strategy"],
+    "iframeUrl": "./games/stickman-hook/index.html",
+    "thumbnail": "./assets/games/stickman-hook.jpg",
     "controls": [
-      "Spacebar / Left Mouse Click - Hold to Grapple & Swing",
-      "Release - Launch & Perform Acrobatic Jumps"
+      "Spacebar / Left Mouse Click / Touch - Hold to Grapple & Swing",
+      "Release - Launch & Perform Acrobatic Jumps",
+      "Unlock cool skins in the shop"
     ],
     "author": "Madbox",
     "rating": 4.9,
@@ -52,48 +56,12 @@
     "allow": "autoplay; fullscreen; pointer-lock; gamepad"
   },
   {
-    "id": "cyber-slope",
-    "title": "Cyber Slope",
-    "description": "A fast-paced 3D neon slope runner with procedural tracks, ramp jumps, speed boosters, and built-in Web Audio synthesis. Runs completely offline!",
-    "category": ["Action", "Arcade", "Strategy", "Casual"],
-    "iframeUrl": "./games/cyber-slope/index.html",
-    "thumbnail": "./assets/games/cyber-slope.jpg",
-    "controls": [
-      "A / D or Left / Right Arrows - Steer Ball",
-      "Spacebar - Jump / Start",
-      "M - Toggle Mute"
-    ],
-    "author": "NeoSphere / Jace",
-    "rating": 5.0,
-    "playCount": 0,
-    "releaseYear": 2026,
-    "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
-    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
-  },
-  {
-    "id": "cyber-flap",
-    "title": "Cyber Flap",
-    "description": "Pilot your cyber drone through laser columns with real-time synth audio and particle trails. Zero external dependencies!",
-    "category": ["Casual", "Arcade", "Retro"],
-    "iframeUrl": "./games/cyber-flap/index.html",
-    "thumbnail": "./assets/games/cyber-flap.jpg",
-    "controls": [
-      "Spacebar / Up Arrow / Left Click - Flap Drone"
-    ],
-    "author": "NeoSphere / Jace",
-    "rating": 4.9,
-    "playCount": 0,
-    "releaseYear": 2026,
-    "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
-    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
-  },
-  {
     "id": "paper-io-2",
     "title": "Paper.io 2",
     "description": "The official real Paper.io 2 game by Voodoo! Expand your colored territory, bite enemy trails, and conquer 100% of the arena in this smooth multiplayer IO classic.",
     "category": ["Action", "Casual", "Strategy", "Arcade"],
     "iframeUrl": "./games/paper-io-2/index.html",
-    "thumbnail": "./assets/games/paper-io-2.png",
+    "thumbnail": "./assets/games/paper-io-2.jpg",
     "controls": [
       "Arrow Keys / WASD or Mouse Movement - Steer Paper Block",
       "Enclose space to claim territory",
@@ -112,7 +80,7 @@
     "description": "Run your own supermarket as an adorable monkey! Grow crops, stock shelves, serve hungry customers, hire assistants, and expand your thriving grocery empire.",
     "category": ["Casual", "Strategy", "Arcade"],
     "iframeUrl": "./games/monkey-mart/index.html",
-    "thumbnail": "./assets/games/monkey-mart.png",
+    "thumbnail": "./assets/games/monkey-mart.jpg",
     "controls": [
       "WASD / Arrow Keys - Move Monkey",
       "Walk near items & counters to harvest, restock, and collect cash automatically"
@@ -123,5 +91,24 @@
     "releaseYear": 2023,
     "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
     "allow": "autoplay; fullscreen; pointer-lock; gamepad"
+  },
+  {
+    "id": "request-games",
+    "title": "Request Games",
+    "description": "Have a game you want added to the hub? Submit your game requests and suggestions directly through our official Google Form!",
+    "category": [],
+    "iframeUrl": "https://forms.gle/CnvnG9kwxg5T4Kk18",
+    "redirectUrl": "https://forms.gle/CnvnG9kwxg5T4Kk18",
+    "thumbnail": "./assets/games/request-games.jpg",
+    "controls": [
+      "Click to open the Google Form request page",
+      "Submit game titles, unblocked links, or ideas to be added"
+    ],
+    "author": "Community Request",
+    "playCount": 0,
+    "releaseYear": 2026,
+    "isExternal": true,
+    "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-popups",
+    "allow": "fullscreen"
   }
 ]

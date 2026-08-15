@@ -1,179 +1,60 @@
-document.xURL= "https://poki.com/";
+// Clean Offline PokiSDK Mock for Monkey Mart
+(function(window) {
+  'use strict';
 
-if (typeof consoleLog== 'undefined') {
-  consoleLog= console.log;
-}
+  function PokiSDK() {}
 
-var originalEval= eval;
-eval= function() {  
-  // consoleLog("--fx--eval--", arguments[0]);  
-  // debugger;  
-  arguments[0]= arguments[0].replace("aHR0cHM6Ly9wb2tpLmNvbS9zaXRlbG9jaw==", "I3ViZzIzNQ==");
-  arguments[0]= arguments[0].replace("'location'", "'xlocation'");
-  arguments[0]= arguments[0].replace("] = _0x3296f7;", "]==_0x3296f7;");
-  arguments[0]= arguments[0].replace("] = window[_0xcdc9(", "]==window[_0xcdc9(");
-  
-  
-  return originalEval.apply(this, arguments);
-}
+  PokiSDK.prototype.init = function() {
+    return Promise.resolve();
+  };
 
-navigator.sendBeacon= function() {
-  consoleLog("--fx--navigator.sendBeacon--", arguments);
-}
+  PokiSDK.prototype.initWithVideoHB = function() {
+    return Promise.resolve();
+  };
 
-WebSocket= function() {
-  
-}
+  PokiSDK.prototype.customEvent = function() {};
 
-xlocation= new Proxy(location, {
-  get: function(target, property, receiver) {
-    consoleLog("--fx--xlocation--get--property--", property);
-    let targetObj = target[property];
-    if (typeof targetObj == "function") {
-      return (...args) => target[property].apply(target, args);
-    } else {
-      if (property== "host" || property=="hostname") {
-        return "localhost";
-      }
-      if (property== "href") {
-        return "https://localhost/";
-      }
-      if (property== "origin") {
-        return "https://localhost/";
-      }
-      return targetObj;
-    }
-  },
-  set: function(target, property, receiver) {
-    consoleLog("--fx--xlocation--set--property--", property, receiver);
-    return true;
-  }
-});
+  PokiSDK.prototype.setDebug = function() {};
 
-xwindow = new Proxy(window, {
-  get: function(target, property, receiver) {
-    // consoleLog("--fx--xWindow--property--", property, receiver);    
-    if (typeof target[property] == "function") {
-      return (...args) => target[property].apply(target,args);
-    } else {
-      if (property== "location") {
-        return target["xlocation"];        
-      }
-      // consoleLog("--fx--xwindow--targetObj--", targetObj);
-      return target[property];
-    }
-  }
-});
-// consoleLog(xwindow.location.href);
-// consoleLog("window.xlocation.href", window.xlocation.href);
+  PokiSDK.prototype.setDebugTouchOverlayController = function() {};
 
-PokiSDK= function() {
-  // ***** UTILS *****
-  function loadJS(FILE_URL, callback) {
-    let scriptEle = document.createElement("script");
-  
-    scriptEle.setAttribute("src", FILE_URL);
-    scriptEle.setAttribute("type", "text/javascript");
-    scriptEle.setAttribute("async", true);
-  
-    document.body.appendChild(scriptEle);
-    
-    // Success
-    scriptEle.addEventListener("load", () => {
-      consoleLog("--fx--PokiSDK--loadJS Done--");
-      callback(true);
-    });
-    
-     // Error
-    scriptEle.addEventListener("error", () => {
-      consoleLog("--fx--PokiSDK--loadJS Error--");
-      callback(false);
-    });
-  }
-
-  this.getURLParam= function(name) {
-    return "";
-  }
-  
-  // ***** INIT *****
-  this.init= function() {
-    return new Promise((resolve, reject)=> {
-      resolve("InitDone");
-    });
-  }
-  
-  this.setDebug= function(debug) {
-    consoleLog("--fx--PokiSDK--setDebug--", debug);
-  }
-
-  this.setDebugTouchOverlayController= function (debug) {
-    consoleLog("--fx--PokiSDK--setDebugTouchOverlayController--", debug);
-  }
-  
-  this.isAdBlocked= function() {
-    consoleLog("--fx--PokiSDK--isAdBlocked--");    
+  PokiSDK.prototype.isAdBlocked = function() {
     return false;
-  }
+  };
 
-  this.happyTime= function(scale) {
-    consoleLog("--fx--PokiSDK--happyTime--", scale);    
-  }
+  PokiSDK.prototype.happyTime = function() {};
 
-  // ***** LOADING *****  
-  this.gameLoadingStart= function(){
-    consoleLog("--fx--PokiSDK--gameLoadingStart--");
-  }
-  
-  this.gameLoadingProgress= function(progress){
-    consoleLog("--fx--PokiSDK--gameLoadingProgress--", progress);
-  }
-  
-  this.gameLoadingFinished= function(){
-    consoleLog("--fx--PokiSDK--gameLoadingFinished--");
-  }
+  PokiSDK.prototype.gameLoadingStart = function() {};
 
-  // ***** GAME CONTROL *****
-  this.gameplayStart= function(){
-    consoleLog("--fx--PokiSDK--gameplayStart--");
-  }
+  PokiSDK.prototype.gameLoadingProgress = function() {};
 
-  this.gameplayStop= function() {
-    consoleLog("--fx--PokiSDK--gameplayStop--");
-  }
+  PokiSDK.prototype.gameLoadingFinished = function() {};
 
-  // ***** ADS CONTROL *****
-  this.commercialBreak= function(){
-    consoleLog("--fx--PokiSDK--commercialBreak--");
-    return new Promise((resolve, reject)=> {
-      loadJS("https://www.ubg235.com/ads/commercial.js", resolve);  
-    });
-  }
+  PokiSDK.prototype.gameplayStart = function() {};
 
-  this.rewardedBreak= function() {
-   consoleLog("--fx--PokiSDK--rewardedBreak--");
-    return new Promise((resolve, reject)=> {
-      loadJS("https://www.ubg235.com/ads/rewarded.js", resolve);
-    }); 
-  }
+  PokiSDK.prototype.gameplayStop = function() {};
 
-  this.displayAd= function() {
-    consoleLog("--fx--PokiSDK--displayAd--", arguments);
-  }
+  PokiSDK.prototype.commercialBreak = function() {
+    return Promise.resolve();
+  };
 
-  this.destroyAd= function() {
-    consoleLog("--fx--PokiSDK--destroyAd--", arguments);
-  }
-}
+  PokiSDK.prototype.rewardedBreak = function() {
+    return Promise.resolve(true);
+  };
 
-PokiSDK.prototype.initWithVideoHB= function() {
-  consoleLog("--fx--PokiSDK--initWithVideoHB--");
-  return new Promise((resolve, reject)=> {
-    resolve("")
-  });
-}
+  PokiSDK.prototype.displayAd = function() {};
 
-PokiSDK.prototype.customEvent= function() {
-  consoleLog("--fx--PokiSDK--customEvent--");
-}
+  PokiSDK.prototype.destroyAd = function() {};
 
-PokiSDK= new PokiSDK();
+  PokiSDK.prototype.getURLParam = function() {
+    return "";
+  };
+
+  PokiSDK.prototype.captureError = function() {};
+
+  PokiSDK.prototype.shareableURL = function() {
+    return Promise.resolve(window.location.href);
+  };
+
+  window.PokiSDK = new PokiSDK();
+})(window);

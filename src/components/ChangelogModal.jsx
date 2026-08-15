@@ -1,14 +1,79 @@
 import React from 'react';
 import { X, Sparkles, Tag, GitCommit, CheckCircle2 } from 'lucide-react';
 
-export const APP_VERSION = 'v2.18.0';
+export const APP_VERSION = 'v2.22.0';
 
 export const ChangelogModal = ({ onClose }) => {
   const versions = [
     {
+      version: 'v2.22.0',
+      date: 'August 15, 2026',
+      tag: 'Latest Release',
+      changes: [
+        'Removed "Request Games" form link from Action, Casual, and Strategy category filters so it appears exclusively under the All view.'
+      ]
+    },
+    {
+      version: 'v2.21.0',
+      date: 'August 15, 2026',
+      changes: [
+        'Bundled authentic Geometry Dash Lite (RobTop Games) with 15 classic levels and complete full soundtrack locally.',
+        '100% Linwize and school-filter safe: Local WASM engine, zero external network calls, Web Audio auto-unlock, and touch/keyboard support.',
+        'Updated game metadata and controls for Geometry Dash Lite.'
+      ]
+    },
+    {
+      version: 'v2.20.0',
+      date: 'August 15, 2026',
+      changes: [
+        'Added "Request Games" quick-access card redirecting directly to the official Google Form (forms.gle/CnvnG9kwxg5T4Kk18).',
+        'Added custom icon artwork for Request Games.',
+        'Updated Stickman Hook icon artwork to high-contrast graphic.'
+      ]
+    },
+    {
+      version: 'v2.19.0',
+      date: 'August 15, 2026',
+      changes: [
+        'Added authentic 3D Unity WebGL Slope game: Fully bundled locally (zero external CDNs or unblocked sites needed).',
+        'Hardened for Linwize and school filters: 100% offline-ready, no ads or tracking requests, safe Web Audio auto-play wrapper, and error interceptors.',
+        'Optimized WebGL memory allocation (512MB) for instant loading on school Chromebooks and lower-spec laptops.',
+        'Integrated touch / mobile steer controls and crisp high-contrast neon cover artwork.'
+      ]
+    },
+    {
+      version: 'v2.18.4',
+      date: 'August 15, 2026',
+      changes: [
+        'Fixed Monkey Mart click interaction crash: Added full GameAnalytics & RemoteConfigs stub implementation with remote listener support.',
+        'Added PokiSDK error capture & shareable URL mock hooks to prevent runtime WASM table callback exceptions on first interaction.',
+        'Hardened school filter compatibility: Cleaned all tracking / UBG signatures, added unhandled error interceptors, and wrapped AudioContext resume for Linwize and Chromebooks.'
+      ]
+    },
+    {
+      version: 'v2.18.3',
+      date: 'August 15, 2026',
+      changes: [
+        'Updated Geometry Dash Lite cover art with new authentic high-contrast icon.'
+      ]
+    },
+    {
+      version: 'v2.18.2',
+      date: 'August 15, 2026',
+      changes: [
+        'Updated Paper.io 2 cover art image with the new high-resolution game artwork.'
+      ]
+    },
+    {
+      version: 'v2.18.1',
+      date: 'August 15, 2026',
+      changes: [
+        'Fixed Monkey Mart offline Defold engine loader, IndexedDB persistent storage, and GameAnalytics mock hooks.'
+      ]
+    },
+    {
       version: 'v2.18.0',
       date: 'August 14, 2026',
-      tag: 'Latest Release',
       changes: [
         'Added authentic Monkey Mart by TinyDobbins — 100% self-hosted and bundled locally for smooth play across school networks.'
       ]

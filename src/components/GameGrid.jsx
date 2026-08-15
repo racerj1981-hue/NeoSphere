@@ -17,8 +17,8 @@ export const GameGrid = ({
 
   // Sort games
   const sortedGames = [...games].sort((a, b) => {
-    if (sortBy === 'popular') return b.playCount - a.playCount;
-    if (sortBy === 'rating') return b.rating - a.rating;
+    if (sortBy === 'popular') return (b.playCount || 0) - (a.playCount || 0);
+    if (sortBy === 'rating') return (b.rating || 0) - (a.rating || 0);
     if (sortBy === 'alphabetical') return a.title.localeCompare(b.title);
     if (sortBy === 'newest') return (b.releaseYear || 2020) - (a.releaseYear || 2020);
     return 0;

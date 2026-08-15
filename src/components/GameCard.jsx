@@ -1,5 +1,5 @@
 import React from 'react';
-import { Play, Star, Sparkles, Gamepad2 } from 'lucide-react';
+import { Play, Star, Sparkles, Gamepad2, ExternalLink } from 'lucide-react';
 
 export const GameCard = ({
   game,
@@ -7,6 +7,8 @@ export const GameCard = ({
   onToggleFavorite,
   onPlayGame,
 }) => {
+  const isExternalLink = game.isExternal || Boolean(game.redirectUrl);
+
   return (
     <div
       id={`game-card-${game.id}`}
@@ -47,11 +49,18 @@ export const GameCard = ({
           </button>
         </div>
 
-        {/* Featured / Custom Badge */}
+        {/* Featured / Custom / Form Badge */}
         {game.featured && (
           <div className="absolute bottom-2.5 left-2.5 z-10 flex items-center gap-1 px-2 py-0.5 rounded bg-amber-500/20 border border-amber-500/40 text-amber-300 text-[10px] font-bold">
             <Sparkles className="w-3 h-3 text-amber-400" />
             <span>FEATURED</span>
+          </div>
+        )}
+
+        {isExternalLink && !game.featured && (
+          <div className="absolute bottom-2.5 left-2.5 z-10 flex items-center gap-1 px-2 py-0.5 rounded bg-blue-500/20 border border-blue-500/40 text-blue-300 text-[10px] font-bold">
+            <ExternalLink className="w-3 h-3 text-blue-400" />
+            <span>GOOGLE FORM</span>
           </div>
         )}
 
@@ -61,10 +70,18 @@ export const GameCard = ({
           </div>
         )}
 
-        {/* Center Hover Play Button */}
+        {/* Center Hover Action Button */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity z-20">
-          <div className="w-12 h-12 rounded-full bg-indigo-600 text-white flex items-center justify-center shadow-xl shadow-indigo-600/50 scale-90 group-hover:scale-100 transition-transform">
-            <Play className="w-6 h-6 fill-white ml-0.5" />
+          <div className={`w-12 h-12 rounded-full flex items-center justify-center shadow-xl scale-90 group-hover:scale-100 transition-transform ${
+            isExternalLink 
+              ? 'bg-blue-600 text-white shadow-blue-600/50' 
+              : 'bg-indigo-600 text-white shadow-indigo-600/50'
+          }`}>
+            {isExternalLink ? (
+              <ExternalLink className="w-6 h-6" />
+            ) : (
+              <Play className="w-6 h-6 fill-white ml-0.5" />
+            )}
           </div>
         </div>
       </div>
@@ -82,14 +99,30 @@ export const GameCard = ({
 
         {/* Footer Meta Stats */}
         <div className="pt-2.5 border-t border-zinc-800/60 flex items-center justify-between text-xs text-zinc-400 font-medium">
-          <div className="flex items-center gap-1 text-amber-400 font-bold">
-            <Star className="w-3.5 h-3.5 fill-amber-400" />
-            <span>{game.rating.toFixed(1)}</span>
-          </div>
+          {game.rating != null && !isExternalLink && game.id !== 'request-games' ? (
+            <div className="flex items-center gap-1 text-amber-400 font-bold">
+              <Star className="w-3.5 h-3.5 fill-amber-400" />
+              <span>{typeof game.rating === 'number' ? game.rating.toFixed(1) : game.rating}</span>
+            </div>
+          ) : (
+            <div className="flex items-center gap-1.5 text-blue-400/90 font-medium text-[11px]">
+              <span className="inline-block w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+              <span>Feedback & Ideas</span>
+            </div>
+          )}
 
-          <div className="flex items-center gap-1 font-mono text-[11px] text-zinc-500" title={`${(game.playCount || 0).toLocaleString()} plays`}>
-            <Gamepad2 className="w-3.5 h-3.5 text-zinc-400" />
-            <span>{(game.playCount || 0).toLocaleString()} plays</span>
+          <div className="flex items-center gap-1 font-mono text-[11px] text-zinc-500" title={isExternalLink ? 'Submit Form' : `${(game.playCount || 0).toLocaleString()} plays`}>
+            {isExternalLink ? (
+              <>
+                <ExternalLink className="w-3.5 h-3.5 text-blue-400" />
+                <span className="text-blue-400 font-semibold">Open Link</span>
+              </>
+            ) : (
+              <>
+                <Gamepad2 className="w-3.5 h-3.5 text-zinc-400" />
+                <span>{(game.playCount || 0).toLocaleString()} plays</span>
+              </>
+            )}
           </div>
         </div>
       </div>
