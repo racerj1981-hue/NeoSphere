@@ -5,7 +5,7 @@
     "description": "Geometry Dash Lite is a free rhythm-based platformer by RobTop Games. Play a browser version here with 15 classic levels, from Stereo Madness to Clubstep.",
     "category": ["Action", "Strategy", "Platformer", "Arcade"],
     "iframeUrl": "https://lolygames.github.io/gd-lit/",
-    "thumbnail": "https://i.ibb.co/gpcJVSF/Geomtry-dash-lite.jpg",
+    "thumbnail": "./assets/games/geometry-dash-lite.png",
     "controls": [
       "Space / Up Arrow / Left Click - Jump"
     ],
@@ -53,8 +53,8 @@
   },
   {
     "id": "cyber-slope",
-    "title": "Cyber Slope (Linewize Safe)",
-    "description": "100% Linewize & School Filter Safe. A fast-paced 3D neon slope runner with procedural tracks, ramp jumps, speed boosters, and built-in Web Audio synthesis. Runs completely offline with 0 external network requests!",
+    "title": "Cyber Slope",
+    "description": "A fast-paced 3D neon slope runner with procedural tracks, ramp jumps, speed boosters, and built-in Web Audio synthesis. Runs completely offline!",
     "category": ["Action", "Arcade", "Strategy", "Casual"],
     "iframeUrl": "./games/cyber-slope/index.html",
     "thumbnail": "./assets/games/cyber-slope.jpg",
@@ -67,15 +67,13 @@
     "rating": 5.0,
     "playCount": 0,
     "releaseYear": 2026,
-    "featured": true,
-    "isLinewizeSafe": true,
     "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
     "allow": "autoplay; fullscreen; pointer-lock; gamepad"
   },
   {
     "id": "cyber-flap",
-    "title": "Cyber Flap (Linewize Safe)",
-    "description": "100% Linewize & School Firewall Safe. Pilot your cyber drone through laser columns with real-time synth audio and particle trails. Zero external dependencies!",
+    "title": "Cyber Flap",
+    "description": "Pilot your cyber drone through laser columns with real-time synth audio and particle trails. Zero external dependencies!",
     "category": ["Casual", "Arcade", "Retro"],
     "iframeUrl": "./games/cyber-flap/index.html",
     "thumbnail": "./assets/games/cyber-flap.jpg",
@@ -86,14 +84,13 @@
     "rating": 4.9,
     "playCount": 0,
     "releaseYear": 2026,
-    "isLinewizeSafe": true,
     "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
     "allow": "autoplay; fullscreen; pointer-lock; gamepad"
   },
   {
     "id": "paper-io-2",
     "title": "Paper.io 2",
-    "description": "The official real Paper.io 2 game by Voodoo! Expand your colored territory, bite enemy trails, and conquer 100% of the arena in this smooth multiplayer IO classic. Bundled locally to guarantee it works on Linewize and school networks.",
+    "description": "The official real Paper.io 2 game by Voodoo! Expand your colored territory, bite enemy trails, and conquer 100% of the arena in this smooth multiplayer IO classic.",
     "category": ["Action", "Casual", "Strategy", "Arcade"],
     "iframeUrl": "./games/paper-io-2/index.html",
     "thumbnail": "./assets/games/paper-io-2.png",
@@ -106,7 +103,24 @@
     "rating": 4.9,
     "playCount": 0,
     "releaseYear": 2019,
-    "isLinewizeSafe": true,
+    "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
+    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
+  },
+  {
+    "id": "monkey-mart",
+    "title": "Monkey Mart",
+    "description": "Run your own supermarket as an adorable monkey! Grow crops, stock shelves, serve hungry customers, hire assistants, and expand your thriving grocery empire.",
+    "category": ["Casual", "Strategy", "Arcade"],
+    "iframeUrl": "./games/monkey-mart/index.html",
+    "thumbnail": "./assets/games/monkey-mart.png",
+    "controls": [
+      "WASD / Arrow Keys - Move Monkey",
+      "Walk near items & counters to harvest, restock, and collect cash automatically"
+    ],
+    "author": "TinyDobbins",
+    "rating": 4.9,
+    "playCount": 0,
+    "releaseYear": 2023,
     "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
     "allow": "autoplay; fullscreen; pointer-lock; gamepad"
   }

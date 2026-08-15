@@ -1,14 +1,43 @@
 import React from 'react';
 import { X, Sparkles, Tag, GitCommit, CheckCircle2 } from 'lucide-react';
 
-export const APP_VERSION = 'v2.16.1';
+export const APP_VERSION = 'v2.18.0';
 
 export const ChangelogModal = ({ onClose }) => {
   const versions = [
     {
-      version: 'v2.16.1',
+      version: 'v2.18.0',
       date: 'August 14, 2026',
       tag: 'Latest Release',
+      changes: [
+        'Added authentic Monkey Mart by TinyDobbins — 100% self-hosted and bundled locally for smooth play across school networks.'
+      ]
+    },
+    {
+      version: 'v2.17.2',
+      date: 'August 14, 2026',
+      changes: [
+        'Removed all Linewize Safe badges, titles, and mentions across game cards, dataset, and game headers.'
+      ]
+    },
+    {
+      version: 'v2.17.1',
+      date: 'August 14, 2026',
+      changes: [
+        'Updated Geometry Dash Lite official game icon to the requested high-res art asset.'
+      ]
+    },
+    {
+      version: 'v2.17.0',
+      date: 'August 14, 2026',
+      changes: [
+        'Updated Paper.io 2 official game icon with high-res art asset.',
+        'Removed the "Featured" tag/badge from the catalog layout for a clean, uniform grid appearance.'
+      ]
+    },
+    {
+      version: 'v2.16.1',
+      date: 'August 14, 2026',
       changes: [
         'Updated Paper.io 2 official game icon / cover art in the game catalog and header view.'
       ]
