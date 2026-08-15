@@ -95,20 +95,18 @@
   {
     "id": "request-games",
     "title": "Request Games",
-    "description": "Have a game you want added to the hub? Submit your game requests and suggestions directly through our official Google Form!",
+    "description": "Have a game you want added to the hub? Submit your game requests and suggestions directly through our official Google Form inside the website!",
     "category": [],
-    "iframeUrl": "https://forms.gle/CnvnG9kwxg5T4Kk18",
-    "redirectUrl": "https://forms.gle/CnvnG9kwxg5T4Kk18",
+    "iframeUrl": "./games/request-games/index.html",
     "thumbnail": "./assets/games/request-games.jpg",
     "controls": [
-      "Click to open the Google Form request page",
-      "Submit game titles, unblocked links, or ideas to be added"
+      "Fill out game titles, unblocked links, or ideas directly in the form",
+      "Submit suggestions to get them added to the game hub"
     ],
     "author": "Community Request",
     "playCount": 0,
     "releaseYear": 2026,
-    "isExternal": true,
     "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-popups",
-    "allow": "fullscreen"
+    "allow": "fullscreen; autoplay"
   }
 ]

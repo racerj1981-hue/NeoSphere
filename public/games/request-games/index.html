@@ -3,80 +3,167 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="0; url=https://forms.gle/CnvnG9kwxg5T4Kk18" />
-  <title>Request Games</title>
+  <title>Request Games Form</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      width: 100vw;
-      height: 100vh;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: #09090b;
+      color: #f4f4f5;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+    }
+    .header-bar {
+      height: 48px;
+      background: #18181b;
+      border-bottom: 1px solid #27272a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      flex-shrink: 0;
+      z-index: 10;
+    }
+    .header-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #e4e4e7;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .badge {
+      background: rgba(99, 102, 241, 0.2);
+      border: 1px solid rgba(99, 102, 241, 0.4);
+      color: #a5b4fc;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-weight: 600;
+    }
+    .header-action {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .open-ext-btn {
+      color: #a1a1aa;
+      font-size: 12px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: #27272a;
+      transition: all 0.2s;
+    }
+    .open-ext-btn:hover {
+      background: #3f3f46;
+      color: #ffffff;
+    }
+    .form-container {
+      flex: 1;
+      width: 100%;
+      height: calc(100% - 48px);
+      position: relative;
+      background: #09090b;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+      background: #ffffff;
+    }
+    .loading-overlay {
+      position: absolute;
+      inset: 0;
+      background: #09090b;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: radial-gradient(circle at center, #1e1b4b 0%, #09090b 100%);
-      color: #f4f4f5;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      text-align: center;
+      z-index: 5;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
     }
-    .card {
-      background: rgba(24, 24, 27, 0.85);
-      border: 1px solid rgba(99, 102, 241, 0.3);
-      padding: 32px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-      max-width: 420px;
-      margin: 20px;
+    .loading-overlay.hidden {
+      opacity: 0;
     }
-    h1 {
-      font-size: 24px;
+    .spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid rgba(99, 102, 241, 0.2);
+      border-top-color: #6366f1;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
       margin-bottom: 12px;
-      background: linear-gradient(135deg, #a5b4fc, #c084fc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
     }
-    p {
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .loading-text {
+      font-size: 13px;
       color: #a1a1aa;
-      font-size: 14px;
-      line-height: 1.5;
-      margin-bottom: 24px;
-    }
-    a.btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: linear-gradient(135deg, #6366f1, #8b5cf6);
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      padding: 12px 24px;
-      border-radius: 12px;
-      box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
-    a.btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(99, 102, 241, 0.6);
     }
   </style>
-  <script>
-    try {
-      window.location.replace("https://forms.gle/CnvnG9kwxg5T4Kk18");
-    } catch (e) {
-      window.location.href = "https://forms.gle/CnvnG9kwxg5T4Kk18";
-    }
-  </script>
 </head>
 <body>
-  <div class="card">
-    <h1>Redirecting to Game Request Form...</h1>
-    <p>Opening Google Forms so you can submit your game requests and suggestions.</p>
-    <a class="btn" href="https://forms.gle/CnvnG9kwxg5T4Kk18" target="_blank" rel="noopener noreferrer">
-      Open Google Form
-    </a>
+  <div class="header-bar">
+    <div class="header-title">
+      <span>Game Request & Suggestions</span>
+      <span class="badge">Official Form</span>
+    </div>
+    <div class="header-action">
+      <a 
+        class="open-ext-btn" 
+        href="https://docs.google.com/forms/d/e/1FAIpQLSdDxPE9PYxOdWvUkSFNlcC6K0GDKufs-BUWRJfILFMA3KSzfA/viewform?usp=sf_link" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        title="Open form in external tab if needed"
+      >
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+        <span>Open in New Tab</span>
+      </a>
+    </div>
   </div>
+
+  <div class="form-container">
+    <div class="loading-overlay" id="loading-overlay">
+      <div class="spinner"></div>
+      <div class="loading-text">Loading Google Request Form...</div>
+    </div>
+    <iframe 
+      id="form-iframe"
+      src="https://docs.google.com/forms/d/e/1FAIpQLSdDxPE9PYxOdWvUkSFNlcC6K0GDKufs-BUWRJfILFMA3KSzfA/viewform?embedded=true"
+      allow="camera; microphone; autoplay; fullscreen"
+    >Loading…</iframe>
+  </div>
+
+  <script>
+    var frame = document.getElementById('form-iframe');
+    var overlay = document.getElementById('loading-overlay');
+    if (frame && overlay) {
+      frame.onload = function() {
+        overlay.classList.add('hidden');
+      };
+      // Fallback timeout to fade loader
+      setTimeout(function() {
+        overlay.classList.add('hidden');
+      }, 2000);
+    }
+  </script>
 </body>
 </html>
