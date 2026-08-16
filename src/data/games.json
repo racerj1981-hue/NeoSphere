@@ -40,7 +40,7 @@
     "id": "stickman-hook",
     "title": "Stickman Hook",
     "description": "Swing through vibrant obstacle courses using grappling hooks, momentum, and acrobatic jumps in Madbox's hit physics platformer! 100% offline & school-filter safe.",
-    "category": ["Action", "Arcade", "Casual", "Strategy"],
+    "category": ["Action", "Puzzle", "Arcade", "Casual", "Strategy"],
     "iframeUrl": "./games/stickman-hook/index.html",
     "thumbnail": "./assets/games/stickman-hook.jpg",
     "controls": [
@@ -59,7 +59,7 @@
     "id": "paper-io-2",
     "title": "Paper.io 2",
     "description": "The official real Paper.io 2 game by Voodoo! Expand your colored territory, bite enemy trails, and conquer 100% of the arena in this smooth multiplayer IO classic.",
-    "category": ["Action", "Casual", "Strategy", "Arcade"],
+    "category": ["Multiplayer", "Action", "Casual", "Strategy", "Arcade"],
     "iframeUrl": "./games/paper-io-2/index.html",
     "thumbnail": "./assets/games/paper-io-2.jpg",
     "controls": [
@@ -93,20 +93,118 @@
     "allow": "autoplay; fullscreen; pointer-lock; gamepad"
   },
   {
+    "id": "drive-mad",
+    "title": "Drive Mad",
+    "description": "Master realistic 3D vehicle physics, dangerous ramps, moving platforms, and tricky obstacles in this addictive 100-level stunt driving challenge!",
+    "category": ["Driving", "Puzzle", "Action", "Arcade", "Casual"],
+    "iframeUrl": "https://ubg98.github.io/DriveMad/",
+    "thumbnail": "./assets/games/drive-mad.jpg",
+    "controls": [
+      "W / Up Arrow / D / Right Arrow - Accelerate & Drive Forward",
+      "S / Down Arrow / A / Left Arrow - Brake & Reverse",
+      "Balance truck in mid-air to land smoothly on four wheels"
+    ],
+    "author": "Martin Magni (Fancade)",
+    "rating": 4.9,
+    "playCount": 0,
+    "releaseYear": 2022,
+    "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
+    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
+  },
+  {
+    "id": "block-blast",
+    "title": "Block Blast!",
+    "description": "Drag and place vibrant geometric blocks onto the 8x8 grid, clear full rows and columns, trigger explosive combo chains, and challenge your high score in this addictive puzzle sensation!",
+    "category": ["Retro", "Puzzle", "Casual", "Strategy", "Arcade"],
+    "iframeUrl": "https://block-blasts-online.github.io/reunbozdo/index.html",
+    "thumbnail": "./assets/games/block-blast.jpg",
+    "controls": [
+      "Click & Drag / Touch - Move and place block shapes onto the 8x8 grid",
+      "Fill horizontal rows or vertical columns to blast blocks and clear space",
+      "Chain consecutive clears to trigger massive Combo multipliers"
+    ],
+    "author": "Hungry Studio",
+    "rating": 4.9,
+    "playCount": 0,
+    "releaseYear": 2022,
+    "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
+    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
+  },
+  {
+    "id": "hole-io",
+    "title": "Hole.io",
+    "description": "Enter the arena as a ravenous black hole! Consume traffic cones, benches, cars, and entire skyscrapers to grow massive and devour other players in fast-paced city destruction!",
+    "category": ["Action", "Arcade", "Multiplayer", "Casual"],
+    "iframeUrl": "./games/hole-io/index.html",
+    "thumbnail": "./assets/games/hole-io.jpg",
+    "controls": [
+      "Mouse / Arrow Keys / WASD - Steer your black hole across the city",
+      "Swallow smaller objects to grow your hole's diameter",
+      "Devour larger obstacles, trees, cars, and whole buildings as you scale up",
+      "Consume smaller rival players to top the leaderboard before time expires"
+    ],
+    "author": "VOODOO",
+    "rating": 4.9,
+    "playCount": 0,
+    "releaseYear": 2018,
+    "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
+    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
+  },
+  {
+    "id": "moto-x3m",
+    "title": "Moto X3M",
+    "description": "Strap on your helmet, rev your engine, and conquer 25+ death-defying obstacle courses packed with massive jumps, explosive hazards, and spinning blades in MadPuffers' iconic stunt bike racer!",
+    "category": ["Driving", "Action", "Arcade", "Casual"],
+    "iframeUrl": "./games/moto-x3m/index.html",
+    "thumbnail": "./assets/games/moto-x3m.jpg",
+    "controls": [
+      "Up Arrow / W - Accelerate and speed through loops",
+      "Down Arrow / S - Brake and reverse",
+      "Left & Right Arrows / A & D - Lean and balance bike for flips & safe landings",
+      "Spacebar - Respawn immediately at the last checkpoint"
+    ],
+    "author": "MadPuffers",
+    "rating": 4.9,
+    "playCount": 0,
+    "releaseYear": 2015,
+    "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
+    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
+  },
+  {
+    "id": "drift-boss",
+    "title": "Drift Boss",
+    "description": "Time your drifts with precision around hairpin turns on endless suspended tracks! Press to drift right and release to steer left in this addictive, one-button 3D drifting hit by MarketJS.",
+    "category": ["Driving", "Arcade", "Casual", "Action"],
+    "iframeUrl": "./games/drift-boss/index.html",
+    "thumbnail": "./assets/games/drift-boss.jpg",
+    "controls": [
+      "Spacebar / Left Click / Touch (Hold) - Drift Right",
+      "Release Spacebar / Left Click / Touch - Steer Left",
+      "Collect coins to unlock new vehicles, upgrades, double score boosts, and insurance"
+    ],
+    "author": "MarketJS",
+    "rating": 4.9,
+    "playCount": 0,
+    "releaseYear": 2019,
+    "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-pointer-lock allow-presentation allow-downloads",
+    "allow": "autoplay; fullscreen; pointer-lock; gamepad"
+  },
+  {
     "id": "request-games",
     "title": "Request Games",
-    "description": "Have a game you want added to the hub? Submit your game requests and suggestions directly through our official Google Form inside the website!",
+    "description": "Have a game you want added to the hub? Submit your game requests and suggestions directly through our official Google Form!",
     "category": [],
-    "iframeUrl": "./games/request-games/index.html",
+    "iframeUrl": "https://forms.gle/CnvnG9kwxg5T4Kk18",
+    "redirectUrl": "https://forms.gle/CnvnG9kwxg5T4Kk18",
     "thumbnail": "./assets/games/request-games.jpg",
     "controls": [
-      "Fill out game titles, unblocked links, or ideas directly in the form",
-      "Submit suggestions to get them added to the game hub"
+      "Click to open the Google Form request page in a new tab",
+      "Submit game titles, unblocked links, or ideas to be added"
     ],
     "author": "Community Request",
-    "playCount": 0,
     "releaseYear": 2026,
+    "isExternal": true,
     "sandbox": "allow-forms allow-modals allow-same-origin allow-scripts allow-popups",
-    "allow": "fullscreen; autoplay"
+    "allow": "fullscreen"
   }
 ]

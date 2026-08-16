@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Drift Boss</title>
+  <meta name="description" content="Drift Boss - One-button 3D drifting game">
+  <meta name="viewport" content="initial-scale=1.0001, minimum-scale=1.0001, maximum-scale=1.0001, user-scalable=no, minimal-ui" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <link rel="stylesheet" type="text/css" href="game.css">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #0f172a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #ajaxbar {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    #game, #webgl {
+      width: 100%;
+      height: 100%;
+    }
+    canvas {
+      display: block;
+      margin: 0 auto;
+    }
+  </style>
+  <script type="text/javascript" src="game.js"></script>
+</head>
+<body onload="setTimeout(function(){window.scrollTo(0,1)},1);">
+  <div id="ajaxbar">
+    <div id="game"><canvas id="canvas"></canvas></div>
+    <div id="webgl"><canvas id="webglcanvas"></canvas></div>
+
+    <div id="orientate"><img src="media/graphics/orientate/landscape.jpg" alt="Rotate device" /></div>
+    <div id="play" class="play" onclick=""><img src="media/graphics/splash/mobile/cover-start.jpg" alt="Play Drift Boss" /></div>
+  </div>
+</body>
+</html>

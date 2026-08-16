@@ -1,14 +1,197 @@
 import React from 'react';
 import { X, Sparkles, Tag, GitCommit, CheckCircle2 } from 'lucide-react';
 
-export const APP_VERSION = 'v2.22.0';
+export const APP_VERSION = 'v2.46.0';
 
 export const ChangelogModal = ({ onClose }) => {
   const versions = [
     {
+      version: 'v2.46.0',
+      date: 'August 16, 2026',
+      tag: 'Latest Release',
+      changes: [
+        'Updated Drift Boss cover artwork to the requested icon.'
+      ]
+    },
+    {
+      version: 'v2.45.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Added authentic unblocked Drift Boss (MarketJS) 3D timing & drifting game with full vehicle unlocks, powerups, and sound effects.',
+        '100% self-hosted locally inside the hub — completely unblockable and safe on Linewize, Securly, and school networks.',
+        'Bundled official 512px Drift Boss cover artwork with Driving, Arcade, and Action category filtering.'
+      ]
+    },
+    {
+      version: 'v2.44.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Added authentic unblocked Moto X3M (MadPuffers) physics stunt bike racing game with 25+ obstacle courses, loop-de-loops, and nitro boosts.',
+        '100% self-hosted locally inside the hub — completely unblockable and safe on Linewize, Securly, and school networks.',
+        'Bundled official 512px Moto X3M cover artwork and integrated Driving / Action category navigation.'
+      ]
+    },
+    {
+      version: 'v2.43.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Updated Hole.io cover artwork to the requested icon.'
+      ]
+    },
+    {
+      version: 'v2.42.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Added authentic unblocked Hole.io (VOODOO) 3D multiplayer black hole game with full city destruction mechanics.',
+        '100% offline self-hosted locally inside the hub — completely immune to Linewize, Securly, and school network filters.',
+        'Bundled official 512px Hole.io cover artwork and added dedicated "Multiplayer" category navigation tab.'
+      ]
+    },
+    {
+      version: 'v2.41.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Added "Retro" category to Block Blast! for classic arcade & retro puzzle filtering.'
+      ]
+    },
+    {
+      version: 'v2.40.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Added authentic unblocked Block Blast! puzzle game (Hungry Studio) featuring full 8x8 grid mechanics, endless mode, combos, sound effects, and Linewize school-filter compatibility.',
+        'Bundled high-definition 512px Block Blast artwork locally with instant cache-busting.'
+      ]
+    },
+    {
+      version: 'v2.39.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Updated Drive Mad cover artwork to the requested high-definition 3D monster truck logo icon.'
+      ]
+    },
+    {
+      version: 'v2.38.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Added "Puzzle" category to both Drive Mad and Stickman Hook for physics puzzle navigation.',
+        'Added "Driving" category to Drive Mad for dedicated vehicle game filtering.'
+      ]
+    },
+    {
+      version: 'v2.37.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Updated Request Games cover artwork to the requested official Google Forms icon.'
+      ]
+    },
+    {
+      version: 'v2.36.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Updated Slope cover artwork to the requested high-definition Slope icon.'
+      ]
+    },
+    {
+      version: 'v2.35.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Updated Paper.io cover artwork to the requested vibrant high-definition logo icon.'
+      ]
+    },
+    {
+      version: 'v2.34.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Permanently committed and bundled all game cover artworks into local repository storage so checkpoint reverts never reset images.',
+        'Repaired git integrity and verified image integrity across all titles (Geometry Dash Lite, Monkey Mart, Stickman Hook, Drive Mad, Slope, Paper.io 2).'
+      ]
+    },
+    {
+      version: 'v2.33.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Added official Drive Mad (Fancade) 3D physics stunt driver game with all 100 levels.',
+        'Optimized with school filter-safe GitHub CDN hosting and bundled high-res cover art.'
+      ]
+    },
+    {
+      version: 'v2.32.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Fixed Request Games overlay issue: converted Request Games into a direct native new-tab link (target="_blank") so that returning to the hub keeps your game catalog perfectly clean without any modal overlay stuck on screen.',
+        'Hardened player state handling to guarantee external forms never trigger or block the app view.'
+      ]
+    },
+    {
+      version: 'v2.31.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Added dynamic version cache-busting to game card image loaders to prevent browser cache from showing outdated icons/thumbnails.',
+        'Ensured official game artwork and custom additions always synchronize with the latest bundled assets immediately.'
+      ]
+    },
+    {
+      version: 'v2.30.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Updated Stickman Hook cover artwork to the requested vibrant swinging stickman game banner.'
+      ]
+    },
+    {
+      version: 'v2.29.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Updated Monkey Mart cover artwork to the requested vibrant official game banner artwork.'
+      ]
+    },
+    {
+      version: 'v2.28.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Updated Geometry Dash Lite cover artwork to the requested official yellow cube icon art.'
+      ]
+    },
+    {
+      version: 'v2.27.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Updated the Slope game artwork/icon to the requested official neon 3D runner graphic.'
+      ]
+    },
+    {
+      version: 'v2.26.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Updated the Request Games icon to the requested official Google Forms icon artwork.'
+      ]
+    },
+    {
+      version: 'v2.25.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Removed the plays counter from the Request Games card.',
+        'Configured Request Games to open the official Google Form in a new tab/page rather than inside the in-app player.'
+      ]
+    },
+    {
+      version: 'v2.24.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Updated Paper.io 2 cover artwork to requested vibrant official 3D paper avatar cover art.'
+      ]
+    },
+    {
+      version: 'v2.23.0',
+      date: 'August 16, 2026',
+      changes: [
+        'Fixed game cover images resetting by creating permanent, local high-resolution artwork for all games including Slope.',
+        'Added dual format (.png & .jpg) local image fallbacks and resilient in-app rendering.',
+        'Prevented external image placeholder resets under restrictive school networks and filters.'
+      ]
+    },
+    {
       version: 'v2.22.0',
       date: 'August 15, 2026',
-      tag: 'Latest Release',
       changes: [
         'Removed "Request Games" form link from Action, Casual, and Strategy category filters so it appears exclusively under the All view.'
       ]

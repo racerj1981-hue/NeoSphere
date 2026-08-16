@@ -127,8 +127,12 @@ export default function App() {
       const storedPlayCountsRaw = localStorage.getItem('ub_play_counts');
       const storedPlayCounts = storedPlayCountsRaw ? JSON.parse(storedPlayCountsRaw) : {};
 
+      // Filter out any custom games that might shadow official default game IDs
+      const defaultIds = new Set(defaultGamesData.map((g) => g.id));
+      const validCustomGames = customGames.filter((cg) => !defaultIds.has(cg.id));
+
       // Combine default JSON games + custom games and merge play counts
-      const combined = [...defaultGamesData, ...customGames].map((g) => ({
+      const combined = [...defaultGamesData, ...validCustomGames].map((g) => ({
         ...g,
         playCount: storedPlayCounts[g.id] !== undefined ? storedPlayCounts[g.id] : (g.playCount || 0),
       }));
@@ -241,6 +245,20 @@ export default function App() {
 
   // Play game handler (increments play count, persists locally, and broadcasts across tabs/windows)
   const handlePlayGame = (gameToPlay) => {
+    // If it is an external link or form redirect (like Request Games), open in another page/tab
+    if (gameToPlay.redirectUrl || gameToPlay.isExternal || gameToPlay.id === 'request-games') {
+      const targetUrl = gameToPlay.redirectUrl || gameToPlay.iframeUrl || 'https://forms.gle/CnvnG9kwxg5T4Kk18';
+      try {
+        const win = window.open(targetUrl, '_blank', 'noopener,noreferrer');
+        if (!win) {
+          window.location.href = targetUrl;
+        }
+      } catch (err) {
+        window.location.href = targetUrl;
+      }
+      return;
+    }
+
     let updatedCount = 0;
 
     setGames((prevGames) => {

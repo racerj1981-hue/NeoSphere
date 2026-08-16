@@ -7,12 +7,14 @@ import {
   Trophy, 
   BrainCircuit, 
   Car, 
-  Coffee 
+  Coffee,
+  Users
 } from 'lucide-react';
 
 const CATEGORIES = [
   { name: 'All', icon: Grid2X2 },
   { name: 'Action', icon: Swords },
+  { name: 'Multiplayer', icon: Users },
   { name: 'Puzzle', icon: Puzzle },
   { name: 'Retro', icon: History },
   { name: 'Strategy', icon: BrainCircuit },
